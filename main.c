@@ -6,13 +6,11 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 11:59:38 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:25:12 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 // Modificar ATOL para fazer intmax/min check
-// Verificar se del list funciona
 // Checkar duplicados
 
 #include <unistd.h>
@@ -50,8 +48,8 @@ int	create_linked_list(char **argv, t_list **starting_node)
 	int		value_from_argument;
 	t_list *current_node;
 
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (argv[++i])
 	{
 		value_from_argument = ft_atol(argv[i]);
 		if (!value_from_argument)
@@ -70,14 +68,26 @@ int	create_linked_list(char **argv, t_list **starting_node)
 			ft_lstadd_back(starting_node, ft_lstnew(&value_from_argument));
 			current_node = current_node->next;
 		}
-		i++;
 	}
 	return (1);
 }
 
 int check_duplicates(t_list *starting_node)
 {
-	return (1);
+	t_list *current_node;
+
+	while (starting_node->next)
+	{
+		current_node = starting_node->next;
+		while(current_node->value)
+		{
+			if (starting_node->value == current_node->value)
+				return (1);
+			current_node = current_node->next;
+		}
+		starting_node = starting_node->next;
+	}
+	return (0);
 }
 
 void print_list(t_list *starting_node)
@@ -109,6 +119,7 @@ int	main(int argc, char **argv)
 		write(1, "Error\n", 6);
 		return (1);
 	}
+	print_list(starting_node);
 	// Sort values
 	// Delete the entirety of the linked list
 	return (0);
