@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 18:26:11 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:31:04 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "push_swap.h"
 #include <limits.h>
 
-//Verifies if given char is a digit
+// Verifies if given char is a digit
 int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
@@ -87,7 +87,6 @@ void	pseudo_sort(t_list **starting_node, int list_length)
 	t_list	*current_node;
 	t_list	*min_node;
 	int		order_number;
-	int		finished_ordering;
 
 	order_number = 1;
 	while (order_number <= list_length)
