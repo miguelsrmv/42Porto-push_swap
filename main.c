@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 15:21:20 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:52:46 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int check_duplicates(t_list *starting_node)
 		current_node = starting_node->next;
 		while(current_node->value)
 		{
-			printf("Starting node has value %i and current node has value %i\n", starting_node->value, current_node->value);
-			fflush(stdout);
 			if (starting_node->value == current_node->value)
 				return (0);
 			if (current_node->next)
@@ -69,8 +67,6 @@ int check_duplicates(t_list *starting_node)
 		printf("\n\n");
 		starting_node = starting_node->next;
 	}
-	printf("YAY!");
-	fflush(stdout);
 	return (1);
 }
 
