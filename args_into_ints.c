@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 16:15:52 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:51:23 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,32 @@ int	check_arg_validity(char *argument, long value)
 		argument++;
 	}
 	return (1);
+}
+
+void	pseudo_sort(t_list **starting_node)
+{
+	t_list	*current_node;
+	t_list	*min_node;
+	int		order_number;
+	int		finished_ordering;
+
+	order_number = 0;
+	finished_ordering = 0;
+	min_node = (*starting_node);
+	while (finished_ordering == 0)
+	{
+		current_node = (*starting_node);
+		while (current_node->next)
+		{
+			finished_ordering = 1;
+			if (current_node->value < min_node->value)
+			{
+				finished_ordering == 0;
+				min_node = current_node;
+			}
+			current_node = current_node->next;
+		}
+		min_node->value = order_number;
+		order_number++;
+	}
 }
