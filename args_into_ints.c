@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 16:51:23 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:26:11 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ long	ft_atol(char *argument)
 	return (n * sign);
 }
 
+// Checks if numbers are ints or have non-digits
 int	check_arg_validity(char *argument, long value)
 {
 	if (value > INT_MAX || value < INT_MIN)
@@ -58,30 +59,41 @@ int	check_arg_validity(char *argument, long value)
 	return (1);
 }
 
-void	pseudo_sort(t_list **starting_node)
+// Gets minimum value from list that hasn't been picked before
+t_list	*get_min_from_list(t_list *starting_node, int list_length)
+{
+	t_list	*current_node;
+	t_list	*min_node;
+
+	current_node = starting_node;
+	while (current_node->sorted)
+		current_node = current_node->next;
+	if (!current_node->next)
+		return (NULL);
+	min_node = current_node;
+	while (list_length--)
+	{
+		if (current_node->value < min_node->value && !current_node->sorted)
+			min_node = current_node;
+		if (current_node->next)
+			current_node = current_node->next;
+	}
+	return (min_node);
+}
+
+// Attributes hypothetical position to node->sorted, in case list was sorted
+void	pseudo_sort(t_list **starting_node, int list_length)
 {
 	t_list	*current_node;
 	t_list	*min_node;
 	int		order_number;
 	int		finished_ordering;
 
-	order_number = 0;
-	finished_ordering = 0;
-	min_node = (*starting_node);
-	while (finished_ordering == 0)
+	order_number = 1;
+	while (order_number <= list_length)
 	{
-		current_node = (*starting_node);
-		while (current_node->next)
-		{
-			finished_ordering = 1;
-			if (current_node->value < min_node->value)
-			{
-				finished_ordering == 0;
-				min_node = current_node;
-			}
-			current_node = current_node->next;
-		}
-		min_node->value = order_number;
+		min_node = get_min_from_list(*starting_node, list_length);
+		min_node->sorted = order_number;
 		order_number++;
 	}
 }

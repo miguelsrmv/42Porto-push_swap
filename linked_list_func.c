@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 16:16:21 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:23:40 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_list	*ft_lstnew(void *value)
 	if (!node)
 		return (NULL);
 	node->value = *(int *)value;
+	node->sorted = 0;
 	node->next = NULL;
 	return (node);
 }

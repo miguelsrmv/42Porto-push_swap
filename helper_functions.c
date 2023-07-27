@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 16:50:43 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:25:13 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ void	print_list_order(t_list *starting_node)
 	current_node = starting_node;
 	while (current_node->next)
 	{
-		printf("%i ", current_node->sorted_position);
+		printf("%i ", current_node->sorted);
 		current_node = current_node->next;
 	}
-	printf("%i \n", current_node->sorted_position);
+	printf("%i \n", current_node->sorted);
 }
-
