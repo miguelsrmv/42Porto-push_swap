@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 14:11:18 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:16:09 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-void print_list(t_list *starting_node)
+void	print_list(t_list *starting_node)
 {
- 	t_list *current_node;
+	t_list	*current_node;
 
 	current_node = starting_node;
 	while (current_node->next)

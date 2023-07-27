@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_func.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 14:29:18 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:16:21 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
-
 // Clears list
 void	ft_lstclear(t_list *node)
 {
 	if (node->next == NULL)
 	{
 		free(node);
-		return;
+		return ;
 	}
 	ft_lstclear(node->next);
 	free(node);

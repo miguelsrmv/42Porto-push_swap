@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_into_ints.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 14:24:13 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:15:52 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ long	ft_atol(char *argument)
 	return (n * sign);
 }
 
-int check_arg_validity(char *argument, long value)
+int	check_arg_validity(char *argument, long value)
 {
 	if (value > INT_MAX || value < INT_MIN)
 		return (0);
