@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_func.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/26 20:06:10 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:55:59 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "push_swap.h"
 
 // Create new node
-t_list	*ft_lstnew(void *value)
+t_list	*ft_lstnew(int *value)
 {
 	t_list	*node;
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
-	node->value = value;
+	node->value = *value;
 	node->next = NULL;
 	return (node);
 }
@@ -47,4 +47,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last_elem = ft_lstlast(*lst);
 		last_elem->next = new;
 	}
+}
+
+
+// Clears list
+void	ft_lstclear(t_list *node)
+{
+	if (node->next == NULL)
+	{
+		free(node);
+		return;
+	}
+	ft_lstclear(node->next);
+	free(node);
 }

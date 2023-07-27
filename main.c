@@ -3,22 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/26 20:06:48 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:59:38 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+// Modificar ATOL para fazer intmax/min check
+// Verificar se del list funciona
+// Checkar duplicados
 
 #include <unistd.h>
 #include <stdio.h>
 #include "push_swap.h"
 
-// Parse through argvs to check they are all correct
-int	check_args(char **argv, t_list *starting_node)
+// Transforms arguments into longs
+int	ft_atol(char *argument)
+{
+	int		sign;
+	int		n;
+
+	n = 0;
+	sign = 1;
+	while ((*argument > 8 && *argument < 14) || *argument == 32)
+		argument++;
+	if (*argument == '-' || *argument == '+')
+	{
+		if (*argument == '-')
+			sign = -sign;
+		argument++;
+	}
+	while (*argument >= '0' && *argument <= '9')
+	{
+		n = n * 10 + *argument - '0';
+		argument++;
+	}
+	return (n * sign);
+}
+
+// Creates linked list and parses through argvs to check they are all correct
+int	create_linked_list(char **argv, t_list **starting_node)
+{
+	int		i;
+	int		value_from_argument;
+	t_list *current_node;
+
+	i = 1;
+	while (argv[i])
+	{
+		value_from_argument = ft_atol(argv[i]);
+		if (!value_from_argument)
+		{
+			if (*starting_node)
+				ft_lstclear(*starting_node);
+			return (0);
+		}
+		if (i == 1)
+		{
+			*starting_node = ft_lstnew(&value_from_argument);
+			current_node = *starting_node;
+		}
+		else
+		{
+			ft_lstadd_back(starting_node, ft_lstnew(&value_from_argument));
+			current_node = current_node->next;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int check_duplicates(t_list *starting_node)
 {
 	return (1);
 }
+
+void print_list(t_list *starting_node)
+{
+ 	t_list *current_node;
+
+	current_node = starting_node;
+	while (current_node->next)
+	{
+		printf("%i ", current_node->value);
+		current_node = current_node->next;
+	}
+	printf("%i ", current_node->value);
+	printf("\n");
+} 
+
 
 int	main(int argc, char **argv)
 {
@@ -27,8 +102,9 @@ int	main(int argc, char **argv)
 	// If there are only 1 elements, list is already sorted
 	if (argc < 3)
 		return (1);
+	
 	// Checks if args are ints and if there are duplicates
-	if (check_args(argv, starting_node) == 0)
+	if (create_linked_list(argv, &starting_node) == 0 || check_duplicates(starting_node) == 0)
 	{
 		write(1, "Error\n", 6);
 		return (1);
