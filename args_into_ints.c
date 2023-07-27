@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 19:11:56 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:15:25 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,10 @@ void	pseudo_sort(t_list **starting_node, int list_length)
 	int		order_number;
 
 	order_number = 1;
-	while (order_number < list_length)
+	while (order_number <= list_length)
 	{
 		min_node = get_min_from_list(*starting_node, list_length);
 		min_node->sorted = order_number;
 		order_number++;
 	}
-	min_node = get_min_from_list(*starting_node, list_length);
-	min_node->sorted = order_number;
 }
