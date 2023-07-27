@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 14:25:41 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:49:43 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	// If there are only 1 elements, list is already sorted
 	if (argc < 3)
 		return (1);
-	
+
 	// Checks if args are ints and if there are duplicates
 	if (create_linked_list(argv, &starting_node) == 0 || check_duplicates(starting_node) == 0)
 	{
