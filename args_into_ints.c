@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 19:15:25 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/28 19:10:45 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	check_arg_validity(char *argument, long value)
 {
 	if (value > INT_MAX || value < INT_MIN)
 		return (0);
+	if (value < 0)
+		*argument++;
 	while (*argument)
 	{
 		if (ft_isdigit(*argument) == 0)
@@ -68,7 +70,7 @@ t_list	*get_min_from_list(t_list *starting_node, int list_length)
 	current_node = starting_node;
 	while (current_node->sorted)
 		current_node = current_node->next;
-	if (!current_node->next)
+	if (!current_node->next && current_node->sorted)
 		return (NULL);
 	min_node = current_node;
 	while (list_length--)
@@ -93,6 +95,7 @@ void	pseudo_sort(t_list **starting_node, int list_length)
 	{
 		min_node = get_min_from_list(*starting_node, list_length);
 		min_node->sorted = order_number;
+		min_node->binary_value = int_to_binary(order_number);
 		order_number++;
 	}
 }

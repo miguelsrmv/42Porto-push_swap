@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 18:39:06 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:28:55 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ int	main(int argc, char **argv)
 	// Sort values // SEGFAULT AQUI COM "1 2 3 4 5 6 7 8 9"!!!
 	pseudo_sort(&starting_node, argc - 1);
 	// Print list
- 	print_list(starting_node);
-	print_list_order(starting_node);
+ 	/*print_list(starting_node);
+	print_list_order(starting_node);*/
+	print_list_order_organized(starting_node);
 	// Delete the entirety of the linked list
 	//ft_lstclear(starting_node);
 	return (0);

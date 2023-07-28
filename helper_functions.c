@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/27 17:25:13 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/28 19:33:50 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,21 @@ void	print_list_order(t_list *starting_node)
 		current_node = current_node->next;
 	}
 	printf("%i \n", current_node->sorted);
+}
+
+void	print_list_order_organized(t_list *starting_node)
+{
+	t_list	*current_node;
+	int		i;
+
+	current_node = starting_node;
+	i = 0;
+
+	printf("Value\t\tIndex\t\tBinary Index\n");
+	while (current_node->next)
+	{
+		printf("%i\t\t%i\t\t%i\n", current_node->value, current_node->sorted, current_node->binary_value);
+		current_node = current_node->next;
+	}
+	printf("%i\t\t%i\t\t%i\n", current_node->value, current_node->sorted, current_node->binary_value);
 }
