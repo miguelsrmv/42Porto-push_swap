@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/28 19:10:45 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:36:41 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,11 @@ void	pseudo_sort(t_list **starting_node, int list_length)
 	t_list	*min_node;
 	int		order_number;
 
-	order_number = 1;
+	order_number = 0;
 	while (order_number <= list_length)
 	{
 		min_node = get_min_from_list(*starting_node, list_length);
+		printf("THIS IS MINIMUM VALUE: %i\n", min_node->value);
 		min_node->sorted = order_number;
 		min_node->binary_value = int_to_binary(order_number);
 		order_number++;
