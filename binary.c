@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:36:33 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/28 19:33:00 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/29 11:31:34 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ int	int_to_binary(int number)
 // Equivalent function
 int	int_to_binary_two(int number)
 {
-	int	binary_result = 0;
-	int	bit_position = 1;
+	int	binary_result;
+	int	bit_position;
+
+	binary_result = 0;
+	bit_position = 1;
 
 	while (number > 0)
 	{

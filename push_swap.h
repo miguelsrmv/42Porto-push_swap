@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/28 19:13:25 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:49:57 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_list
 	int				sorted;
 	int				binary_value;
 	struct s_list	*next;
+	struct s_list	*prev;
 }	t_list;
 
 int		ft_isdigit(char c);
@@ -37,5 +38,7 @@ void	print_list_order_organized(t_list *starting_node);
 void	pseudo_sort(t_list **starting_node, int list_length);
 t_list	*get_min_from_list(t_list *starting_node, int list_length);
 int		int_to_binary(int number);
+void	sort_list(t_list **starting_node, int length);
+int	elem_index(t_list *last_node, int length, int bit_slot);
 
 #endif
