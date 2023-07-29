@@ -6,28 +6,13 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/29 14:39:16 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/29 14:40:09 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <unistd.h>
-
-void	pb()
-{
-	write(1, "pb\n", 3);
-}
-
-void	ra()
-{
-	write(1, "ra\n", 3);
-}
-
-void	pa()
-{
-	write(1, "pa\n", 3);
-}
 
 void	sort_list(t_list **starting_node, int length)
 {
@@ -45,14 +30,14 @@ void	sort_list(t_list **starting_node, int length)
 		while (target_node--)
 		{
 			if (current_node->binary_value % bit_slot == 0)
-				pb();
+				write(1, "pb\n", 3);
 			else
-				ra();
+				write(1, "ra\n", 3);
 			current_node = current_node->next;
 			rotate_back++;
 		}
 		while (rotate_back--)
-			pa();
+			write(1, "pa\n", 3);
 		bit_slot *= 10;
 	}
 }
