@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/29 17:31:51 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:12:15 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	print_list_order_organized(t_list *starting_node)
 	current_node = starting_node;
 	i = 0;
 
-	printf("Value\t\tIndex\t\tBinary Index\n");
+	printf("Value\t\tIndex\t\tBinary Index\t\tAddress\t\t\tPrevious\t\tNext\n");
 	while (current_node->next)
 	{
-		printf("%i\t\t%i\t\t%i\n", current_node->value, current_node->sorted, current_node->binary_value);
+		printf("%i\t\t%i\t\t%i\t\t\t%p\t\t%p\t\t\t%p\n", current_node->value, current_node->sorted, current_node->binary_value, &(current_node->value), current_node->prev, current_node->next);
 		current_node = current_node->next;
 	}
-	printf("%i\t\t%i\t\t%i\n", current_node->value, current_node->sorted, current_node->binary_value);
+	printf("%i\t\t%i\t\t%i\t\t\t%p\t\t%p\t\t\t%p\n\n\n", current_node->value, current_node->sorted, current_node->binary_value, &(current_node->value), current_node->prev, current_node->next);
 }
