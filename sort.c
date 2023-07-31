@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 13:00:30 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:09:09 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,26 @@ void	sort_list(t_list **starting_node, int length)
 		target_node = elem_index(ft_lstlast(*starting_node), length, bit);
 		current_node = *starting_node;
 		buffer_node = ft_lstnew(&rotate_back, 1);
-		print_list_order_organized(*starting_node);
- 		while (target_node--)
+		printf("\n\nLIST A:\n");
+		print_list_order_organized(current_node);
+		printf("\n\nLIST B:\n");
+		print_list_order_organized(buffer_node);
+		printf("\n\n\n");
+		fflush(stdout);
+		int i = 1;
+ 		while (i != 0)
 		{	
-			print_list_order_organized(buffer_node);
 			if ((((current_node->sorted - 1) >> bit) & 1) == 0)
 				pb(&current_node, buffer_node, &rotate_back);
 			else
 				ra(&current_node);
+			printf("\n\nLIST A:\n");
+			print_list_order_organized(current_node);
+			printf("\n\nLIST B:\n");
+			print_list_order_organized(buffer_node);
+			printf("\n\n\n");
+			fflush(stdout);
+			i--;
 		}
 		ra(starting_node);
 		while (rotate_back)
