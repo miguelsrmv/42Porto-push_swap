@@ -6,19 +6,22 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 10:39:06 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:25:34 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include "push_swap.h"
 
 // Create new node
-t_list	*ft_lstnew(void *value)
+t_list	*ft_lstnew(void *value, size_t value_size)
 {
 	t_list	*node;
 
+	if (value_size != sizeof(long))
+		return (NULL);
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
@@ -49,7 +52,7 @@ t_list	*ft_lstfirst(t_list *lst)
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last_elem;
-
+Clears
 	if (*lst == NULL)
 		*lst = new;
 	else

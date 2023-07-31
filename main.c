@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 11:08:26 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:21:06 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	create_linked_list(char **argv, t_list **starting_node)
 	t_list	*current_node;
 
 	value_from_argument = ft_atol(*argv);
-	*starting_node = ft_lstnew(&value_from_argument);
+	*starting_node = ft_lstnew(&value_from_argument, sizeof(long));
 	current_node = *starting_node;
 	argv++;
 	while (*argv)
@@ -38,7 +38,7 @@ int	create_linked_list(char **argv, t_list **starting_node)
 		}
 		else
 		{
-			ft_lstadd_back(starting_node, ft_lstnew(&value_from_argument));
+			ft_lstadd_back(starting_node, ft_lstnew(&value_from_argument, sizeof(long)));
 			current_node = current_node->next;
 		}
 		argv++;
