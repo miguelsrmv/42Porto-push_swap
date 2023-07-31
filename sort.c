@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 14:45:13 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:41:01 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	ra(t_list **current_node)
 	t_list	*last_a_node;
 
 	last_a_node = ft_lstlast(*current_node);
-	(last_a_node)->prev->next = NULL;					// OK
-	(last_a_node)->next = *current_node;				// OK ??
-	(*current_node)->prev = last_a_node;
-	(last_a_node)->prev = NULL;
-	*current_node = last_a_node;
+	last_a_node->next = *current_node;
+	*current_node = (*current_node)->next;
+	(*current_node)->prev->prev = last_a_node;
+	(*current_node)->prev = NULL;
+	last_a_node->next->next = NULL;
 	write(1, "ra\n", 3);
 }
 
@@ -60,30 +60,29 @@ void	sort_list(t_list **starting_node, int length)
 {
 	int		bit;
 	int		rotate_back;
-	int		target_node;
+	int		length_copy;
 	t_list	*current_node;
 	t_list	*buffer_node;
 
 	bit = 0;
-	while (bit < 3)
+	while (bit < 4)
 	{
 		rotate_back = 0;
-		target_node = elem_index(ft_lstlast(*starting_node), length, bit);
+		length_copy = length;
 		current_node = *starting_node;
 		buffer_node = ft_lstnew(&rotate_back, 1);
- 		while (target_node--)
+		while (length_copy--)
 		{	
 			if ((((current_node->sorted - 1) >> bit) & 1) == 0)
 				pb(&current_node, buffer_node, &rotate_back);
 			else
 				ra(&current_node);
 		}
-		ra(&current_node);
 		while (rotate_back)
 			pa(&current_node, buffer_node, &rotate_back);
 		bit++;
-		// del + free buffer node
 	}
+	// del + free buffer node
 }
 
 int	elem_index(t_list *last_node, int length, int bit)
