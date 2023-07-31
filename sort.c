@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 12:05:24 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:00:30 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 
 void	pb(t_list **current_node, t_list *buffer_node, int *rotate_back)
 {
-	t_list	*first_b_element;
+	t_list	*target_b_node;
 
-	first_b_element = ft_lstfirst(buffer_node);				// ft_lstfirst
-	(first_b_element)->prev = *current_node;
-	(*current_node)->next->prev = NULL;
-	(*current_node)->next = first_b_element;
+	target_b_node = ft_lstlast(buffer_node);			// ft_lstfirst
+	*current_node = (*current_node)->next;
+	target_b_node->next = (*current_node)->prev;
+	target_b_node->next->prev = target_b_node;
 	(*current_node)->prev = NULL;
+	
+/* 	(first_b_element)->prev = *current_node;
+	(*current_node)->next->prev = NULL;   //////
+	(*current_node)->next = first_b_element;
+	(*current_node)->prev = NULL; */
 
 /* 
 	(*buffer_node)->next = *current_node;					/// previous ?
@@ -57,6 +62,8 @@ void	ra(t_list **starting_node)
 {
 	t_list	*last_a_node;
 
+	printf("Starting_node %i", (*starting_node)->value);
+	fflush(stdout);
 	last_a_node = ft_lstlast(*starting_node);
 	(last_a_node)->prev->next = NULL;
 	(last_a_node)->next = *starting_node;
@@ -76,19 +83,18 @@ void	sort_list(t_list **starting_node, int length)
 	bit = 0;
 	while (bit < 3)
 	{
-		print_list_order_organized(*starting_node);
 		rotate_back = 0;
 		target_node = elem_index(ft_lstlast(*starting_node), length, bit);
 		current_node = *starting_node;
 		buffer_node = ft_lstnew(&rotate_back, 1);
-		printf("Target node: %i\n", target_node);
-		while (target_node--)
-		{
+		print_list_order_organized(*starting_node);
+ 		while (target_node--)
+		{	
+			print_list_order_organized(buffer_node);
 			if ((((current_node->sorted - 1) >> bit) & 1) == 0)
 				pb(&current_node, buffer_node, &rotate_back);
 			else
-				ra(starting_node);
-			current_node = current_node->next;
+				ra(&current_node);
 		}
 		ra(starting_node);
 		while (rotate_back)
