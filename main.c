@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 12:13:31 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:50:02 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	// Check if it's already sorted!!!
-	// Sort values // SEGFAULT AQUI COM "1 2 3 4 5 6 7 8 9"!!!
 	pseudo_sort(&starting_node, argc - 1);
 	// Print list
- 	/*print_list(starting_node);
-	print_list_order(starting_node);*/
-	//print_list_order_organized(starting_node);
 	sort_list(&starting_node, argc - 1);
 	// Delete the entirety of the linked list
-	//ft_lstclear(starting_node);
 	return (0);
 }

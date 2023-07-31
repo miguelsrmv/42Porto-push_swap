@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_into_ints.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 10:11:17 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:02:31 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ long	ft_atol(char *argument)
 // Checks if numbers are ints or have non-digits
 int	check_arg_validity(char *argument, long value)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (value > INT_MAX || value < INT_MIN)
@@ -71,14 +71,14 @@ t_list	*get_min_from_list(t_list *starting_node, int list_length)
 	t_list	*min_node;
 
 	current_node = starting_node;
-	while (current_node->sorted)
+	while (current_node->sorted >= 0)
 		current_node = current_node->next;
-	if (!current_node->next && current_node->sorted)
-		return (NULL);
+/* 	if (!current_node->next && current_node->sorted)
+		return (NULL); */
 	min_node = current_node;
 	while (list_length--)
 	{
-		if (current_node->value < min_node->value && !current_node->sorted)
+		if (current_node->value < min_node->value && current_node->sorted < 0)
 			min_node = current_node;
 		if (current_node->next)
 			current_node = current_node->next;
@@ -93,10 +93,9 @@ void	pseudo_sort(t_list **starting_node, int list_length)
 	int		order_number;
 
 	order_number = 0;
-	while (order_number <= list_length)
+	while (order_number < list_length)
 	{
 		min_node = get_min_from_list(*starting_node, list_length);
-		printf("THIS IS MINIMUM VALUE: %i\n", min_node->value);
 		min_node->sorted = order_number;
 		min_node->binary_value = int_to_binary(order_number);
 		order_number++;

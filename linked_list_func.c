@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_func.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 11:57:05 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:00:58 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstnew(void *value, int buffer_flag)
 	if (!node)
 		return (NULL);
 	node->value = *(int *)value;
-	node->sorted = 0;
+	node->sorted = -1;
 	node->next = NULL;
 	node->prev = NULL;
 	node->buffer_flag = buffer_flag;
