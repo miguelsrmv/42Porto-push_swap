@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 11:25:32 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:50:18 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ void	pb(t_list **current_node, t_list *buffer_node, int *rotate_back)
 {
 	t_list	*first_b_element;
 
+	printf("Hello!");
+	printf("Current node: %i\n", (*current_node)->value);
+	printf("Burrent node: %i\n", (buffer_node)->value);
+	fflush(stdout);
 	first_b_element = ft_lstfirst(buffer_node);				// ft_lstfirst
 	(first_b_element)->prev = *current_node;
 	(*current_node)->next->prev = NULL;
 	(*current_node)->next = first_b_element;
 	(*current_node)->prev = NULL;
+
 
 /* 
 	(*buffer_node)->next = *current_node;					/// previous ?
@@ -79,9 +84,7 @@ void	sort_list(t_list **starting_node, int length)
 		rotate_back = 0;
 		target_node = elem_index(ft_lstlast(*starting_node), length, bit);
 		current_node = *starting_node;
-		buffer_node = ft_lstnew(NULL, sizeof(void));
-		printf("Hi!!");
-		fflush(stdout);
+		buffer_node = ft_lstnew((void *)1, 1);
 		while (target_node--)
 		{
 			printf("Current_node->sorted (%i) >> bit (%i) & 1 is %i\n", (current_node)->sorted - 1, bit, (((current_node)->sorted - 1) >> bit) & 1);
