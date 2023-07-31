@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 11:50:18 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:59:23 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,9 @@ void	sort_list(t_list **starting_node, int length)
 		rotate_back = 0;
 		target_node = elem_index(ft_lstlast(*starting_node), length, bit);
 		current_node = *starting_node;
-		buffer_node = ft_lstnew((void *)1, 1);
+		buffer_node = ft_lstnew(&rotate_back, 1);
 		while (target_node--)
 		{
-			printf("Current_node->sorted (%i) >> bit (%i) & 1 is %i\n", (current_node)->sorted - 1, bit, (((current_node)->sorted - 1) >> bit) & 1);
 			if ((((current_node->sorted - 1) >> bit) & 1) == 0)
 				pb(&current_node, buffer_node, &rotate_back);
 			else

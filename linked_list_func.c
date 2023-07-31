@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 11:46:04 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:57:05 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include "push_swap.h"
+#include <stdio.h>
 
 // Create new node
 t_list	*ft_lstnew(void *value, int buffer_flag)
@@ -21,6 +22,7 @@ t_list	*ft_lstnew(void *value, int buffer_flag)
 	t_list	*node;
 
 	node = (t_list *)malloc(sizeof(t_list));
+
 	if (!node)
 		return (NULL);
 	node->value = *(int *)value;
