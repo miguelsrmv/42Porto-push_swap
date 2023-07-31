@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 11:47:08 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:32:21 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		int_to_binary(int number);
 void	sort_list(t_list **starting_node, int length);
 int		elem_index(t_list *last_node, int length, int bit_slot);
 void	pb(t_list **current_node, t_list *buffer_node, int *rotate_back);
-void	pa(t_list **starting_node, t_list *buffer_node, int *rotate_back);
-void	ra(t_list **starting_node);
+void	pa(t_list **current_node, t_list *buffer_node, int *rotate_back);
+void	ra(t_list **current_node);
 
 #endif
