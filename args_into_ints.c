@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_into_ints.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/29 17:36:41 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:11:17 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ long	ft_atol(char *argument)
 // Checks if numbers are ints or have non-digits
 int	check_arg_validity(char *argument, long value)
 {
+	int i;
+
+	i = 0;
 	if (value > INT_MAX || value < INT_MIN)
 		return (0);
 	if (value < 0)
-		*argument++;
-	while (*argument)
+		i++;
+	while (argument[i])
 	{
-		if (ft_isdigit(*argument) == 0)
+		if (ft_isdigit(argument[i]) == 0)
 			return (0);
-		argument++;
+		i++;
 	}
 	return (1);
 }
@@ -86,7 +89,6 @@ t_list	*get_min_from_list(t_list *starting_node, int list_length)
 // Attributes hypothetical position to node->sorted, in case list was sorted
 void	pseudo_sort(t_list **starting_node, int list_length)
 {
-	t_list	*current_node;
 	t_list	*min_node;
 	int		order_number;
 

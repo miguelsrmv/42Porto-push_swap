@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_func.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/29 19:21:00 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:39:06 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ t_list	*ft_lstlast(t_list *lst)
 {
 	while (lst && lst->next)
 		lst = lst->next;
+	return (lst);
+}
+
+// Returns first node of list
+t_list	*ft_lstfirst(t_list *lst)
+{
+	while (lst && lst->prev)
+		lst = lst->prev;
 	return (lst);
 }
 

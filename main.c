@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/29 16:26:52 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:08:26 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	create_linked_list(char **argv, t_list **starting_node)
 	long	value_from_argument;
 	t_list	*current_node;
 
+	value_from_argument = ft_atol(*argv);
+	*starting_node = ft_lstnew(&value_from_argument);
+	current_node = *starting_node;
+	argv++;
 	while (*argv)
 	{
 		value_from_argument = ft_atol(*argv);
@@ -31,11 +35,6 @@ int	create_linked_list(char **argv, t_list **starting_node)
 			if (*starting_node)
 				ft_lstclear(*starting_node);
 			return (0);
-		}
-		if (!*starting_node)
-		{
-			*starting_node = ft_lstnew(&value_from_argument);
-			current_node = *starting_node;
 		}
 		else
 		{
@@ -83,8 +82,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	// Check if it's already sorted!!!
-
-	
 	// Sort values // SEGFAULT AQUI COM "1 2 3 4 5 6 7 8 9"!!!
 	pseudo_sort(&starting_node, argc - 1);
 	// Print list
