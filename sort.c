@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 17:36:23 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:39:47 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,9 @@ int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 		return (3);
 	else
 		return (0);
+}
+
+void	sort(t_ptr **stack_a, t_ptr **stack)
+{
+	
 }
