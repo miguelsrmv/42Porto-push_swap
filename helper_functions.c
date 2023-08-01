@@ -6,13 +6,14 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 18:00:00 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:14:56 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include "push_swap.h"
+#include <string.h> //for Strcmp
 
 void	swap(int *a, int *b)
 {
@@ -52,14 +53,6 @@ void	print_stack_data(t_ptr *stack)
 	fflush(stdout);
 }
 
-char	*print_tab_calc(t_list *prev)
-{
-	if (prev == NULL)
-		return ("\t\t");
-	else
-		return ("\t");
-}
-
 void	print_instruction(char *instruction, char stack)
 {
 	int	i;
@@ -70,4 +63,33 @@ void	print_instruction(char *instruction, char stack)
 	write(1, instruction, i);
 	write(1, &stack, 1);
 	write(1, "\n", 1);
+}
+
+void	test_input(t_ptr **stack_a, t_ptr **stack_b)
+{
+	char	move[4];
+
+	scanf("%s", move);
+	if (strcmp(move, "pa") == 0)
+		push(stack_b, stack_a);
+	else if (strcmp(move, "pb") == 0)
+		push(stack_a, stack_b);
+	else if (strcmp(move, "sa") == 0)
+		swap_stack(stack_a);
+	else if (strcmp(move, "sb") == 0)
+		swap_stack(stack_b);
+	else if (strcmp(move, "ss") == 0)
+		swap_both(stack_a, stack_b);
+	else if (strcmp(move, "ra") == 0)
+		rotate_stack(stack_a);
+	else if (strcmp(move, "rb") == 0)
+		rotate_stack(stack_b);
+	else if (strcmp(move, "rr") == 0)
+		rotate_both(stack_a, stack_b);
+	else if (strcmp(move, "rra") == 0)
+		reverse_rotate_stack(stack_a);
+	else if (strcmp(move, "rrb") == 0)
+		reverse_rotate_stack(stack_b);
+	else if (strcmp(move, "rrr") == 0)
+		reverse_rotate_both(stack_a, stack_b);
 }

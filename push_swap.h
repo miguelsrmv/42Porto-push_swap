@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 17:28:24 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:10:03 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*print_tab_calc(t_list *prev);
 void	print_instruction(char *instruction, char stack);	
 void	swap(int *a, int *b);
 void	print_stack_data(t_ptr *stack);
+void	test_input(t_ptr **stack_a, t_ptr **stack_b);
 
 // Sort.c
 void	sort_list(t_list **starting_node, int length);

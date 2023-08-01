@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 18:09:47 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:10:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,12 @@ void	create_stacks(t_list **starting_node, t_ptr **stack_a,
 		return ;
 	(*stack_a)->name = 'a';
 	(*stack_b)->name = 'b';
-	(*stack_a)->length = length - 2;
-	(*stack_b)->length = 2;
-	(*stack_a)->next = (*starting_node)->next->next;
+	(*stack_a)->length = length;
+	(*stack_b)->length = 0;
+	(*stack_a)->next = (*starting_node);
 	last_a_node = ft_lstlast((*stack_a)->next);
 	(*stack_a)->next->prev = last_a_node;
 	(last_a_node)->next = (*stack_a)->next;
-	
-	(*stack_b)->next = *starting_node;
-	(*stack_b)->next->next->next = (*stack_b)->next;
-	(*stack_b)->next->prev = (*stack_b)->next->next;
-	(*starting_node) = (*stack_a)->next;
-	write(1, "pb\npb\n", 6);
+	/*push(stack_a, stack_b);
+	push(stack_a, stack_b);*/
 }
-
-
-///////// REVER CRIAÇÃO DA STACK!!!!!! A STACK B ESTÁ INVERTIDA!!!!!
