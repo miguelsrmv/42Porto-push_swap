@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 17:19:22 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:36:23 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,29 @@ void	find_correct_position(t_ptr **stack_a, t_ptr **stack_b)
 	}
 }
 
+int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
+{
+	t_list	*a_node;
+	t_list	*b_node;
+
+	if ((*stack_a)->next)
+	{
+		a_node = (*stack_a)->next;
+		while ((a_node->value) < (a_node->next->value))
+			a_node = a_node->next;
+	}
+	if ((*stack_b)->next)
+	{
+		b_node = (*stack_b)->next;
+		while ((b_node->value) > (b_node->next->value))
+		b_node = b_node->next;
+	}
+	if (a_node == (*stack_a)->next->prev && b_node == (*stack_b)->next->prev)
+		return (1);
+	else if (a_node == (*stack_a)->next->prev)
+		return (2);
+	else if (b_node == (*stack_b)->next->prev)
+		return (3);
+	else
+		return (0);
+}
