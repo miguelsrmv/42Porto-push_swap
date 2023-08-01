@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 16:48:57 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:14:18 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	print_list_order_organized(t_ptr *stack)
 	length = stack->length;
 	line = "_____________________________________________________________";
 	printf("\n%s STACK %c%s\n", line, ((stack->name) - 32), line);
-	printf("Value\t\tAddress\t\tPrevious\tNext\t\t\tPosition\tTarget\tCost\n");
+	printf("Value\t\tAddress\t\tPrevious\tNext\t\t\tPosition\tTarget\t\tCost\n");
 	while (length--)
 	{
-		printf("%i\t\t%p\t%p\t%p\t\t%i\t\t%i\t%i\n", current_node->value,
+		printf("%i\t\t%p\t%p\t%p\t\t%i\t\t%i\t\t%i\n", current_node->value,
 			&(current_node->value), current_node->prev, current_node->next,
 			current_node->position, current_node->target, current_node->cost);
 		current_node = current_node->next;
