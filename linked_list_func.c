@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 16:42:28 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:33:06 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-// Returns first node of list
-t_list	*ft_lstfirst(t_list *lst)
-{
-	while (lst && lst->prev)
-		lst = lst->prev;
-	return (lst);
-}
-
 // Add created node at end of list
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
@@ -62,13 +54,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		new->prev = last_elem;
 		last_elem->next = new;
 	}
-}
-
-// Add created node at beginning of list
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	new->next = *lst;
-	*lst = new;
 }
 
 // Clears list

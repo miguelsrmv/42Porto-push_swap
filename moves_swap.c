@@ -6,12 +6,21 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:00:06 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 11:46:24 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:27:18 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
+
+void	swap(int *a, int *b)
+{
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
 
 void	swap_stack(t_ptr **stack)
 {

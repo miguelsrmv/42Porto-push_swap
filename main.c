@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 22:09:40 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:40:29 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,7 @@ int	main(int argc, char **argv)
 	create_stacks(&starting_node, &stack_a, &stack_b, argc - 1);
 	print_stack_data(stack_a);
 	print_list_order_organized(stack_a);
-	while (1)
-	{
-		printf("Move:");
-		test_input(&stack_a, &stack_b);
-		print_list_order_organized(stack_a);
-	}
-
+	test_input(&stack_a, &stack_b);
 	/*
 	print_stack_data(stack_b);
 	reset_nodes(&stack_a, &stack_b);
@@ -56,3 +50,8 @@ int	main(int argc, char **argv)
 	// Delete the entirety of the linked list
 	return (0);
 }
+
+
+// Tarefas
+// 1 Correct push_a e push_b em casos de 0, 1 ou 2 nodes
+// 2 Confirmar que swap / rotate / reverse rotate funciona em casos de 2 nodes
