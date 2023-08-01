@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 11:27:25 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:13:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	main(int argc, char **argv)
 	// Check if it's already sorted!!!
 	// If tiny list:
 	// If long list:
-	create_stacks(&starting_node, &stack_a, &stack_b);
-	print_list_order_organized(stack_a->next, stack_a->name, argc - 1 - 2);
-	print_list_order_organized(stack_b->next, stack_b->name, 2);
-	reverse_rotate_stack(&stack_a);
-	print_list_order_organized(stack_a->next, stack_a->name, argc - 1 - 2);
-	print_list_order_organized(stack_b->next, stack_b->name, 2);
+	create_stacks(&starting_node, &stack_a, &stack_b, argc - 1);
+	print_list_order_organized(stack_a);
+	print_list_order_organized(stack_b);
+	push(&stack_a, &stack_b);
+	print_list_order_organized(stack_a);
+	print_list_order_organized(stack_b);
 	// Sort it
 		// sort_list(&starting_node, argc - 1);
 	// Delete the entirety of the linked list
