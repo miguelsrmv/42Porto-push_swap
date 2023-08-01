@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 16:00:58 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:29:28 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 // Create new node
-t_list	*ft_lstnew(void *value, int buffer_flag)
+t_list	*ft_lstnew(void *value)
 {
 	t_list	*node;
 
@@ -26,10 +26,9 @@ t_list	*ft_lstnew(void *value, int buffer_flag)
 	if (!node)
 		return (NULL);
 	node->value = *(int *)value;
-	node->sorted = -1;
+	node->position = 0;
 	node->next = NULL;
 	node->prev = NULL;
-	node->buffer_flag = buffer_flag;
 	return (node);
 }
 

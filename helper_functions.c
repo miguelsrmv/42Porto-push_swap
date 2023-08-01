@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/07/31 15:39:21 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:24:39 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,37 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-void	print_list(t_list *starting_node)
+void	print_list_order_organized(t_list *starting_node, char c, int length)
 {
 	t_list	*current_node;
 
-	printf("List value is: ");
 	current_node = starting_node;
-	while (current_node->next)
+	printf("\n______________________________________STACK %c_________________________________________\n", c-32);
+	printf("Value\t\t\tAddress\t\t\tPrevious\t\tNext\n");
+	while (length--)
 	{
-		printf("%i ", current_node->value);
+		printf("%i\t\t\t%p\t\t%p%s\t%p\n", current_node->value, &(current_node->value), current_node->prev, print_tab_calc(current_node->prev), current_node->next);
 		current_node = current_node->next;
 	}
-	printf("%i \n", current_node->value);
+	printf("\n");
 }
 
-void	print_list_order(t_list *starting_node)
+char	*print_tab_calc(t_list *prev)
 {
-	t_list	*current_node;
-
-	printf("List index is: ");
-	current_node = starting_node;
-	while (current_node->next)
-	{
-		printf("%i ", current_node->sorted);
-		current_node = current_node->next;
-	}
-	printf("%i \n", current_node->sorted);
+	if (prev == NULL)
+		return ("\t\t");
+	else
+		return ("\t");
 }
 
-void	print_list_order_organized(t_list *starting_node)
+void	print_instruction(char *instruction, char stack)
 {
-	t_list	*current_node;
-	int		i;
+	int	i;
 
-	current_node = starting_node;
 	i = 0;
-
-	printf("Value\t\tIndex\t\tBinary Index\t\tAddress\t\t\tPrevious\t\tNext\n");
-	while (current_node->next)
-	{
-		printf("%i\t\t%i\t\t%i\t\t\t%p\t\t%p\t\t\t%p\n", current_node->value, current_node->sorted, current_node->binary_value, &(current_node->value), current_node->prev, current_node->next);
-		current_node = current_node->next;
-	}
-	printf("%i\t\t%i\t\t%i\t\t\t%p\t\t%p\t\t\t%p\n\n\n", current_node->value, current_node->sorted, current_node->binary_value, &(current_node->value), current_node->prev, current_node->next);
+	while (instruction[i])
+		i++;
+	write(1, instruction, i);
+	write(1, &stack, 1);
+	write(1, "\n", 1);
 }
