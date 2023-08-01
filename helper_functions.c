@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 12:50:37 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:48:57 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,30 @@ void	swap(int *a, int *b)
 void	print_list_order_organized(t_ptr *stack)
 {
 	t_list	*current_node;
-	char	c;
 	int		length;
 	char	*line;
 
 	current_node = stack->next;
-	c = stack->name;
 	length = stack->length;
-	line = "______________________________________";
-	printf("\n%s STACK %c%s\n", line, (c - 32), line);
-	printf("Value\t\t\tAddress\t\t\tPrevious\t\tNext\n");
+	line = "_____________________________________________________________";
+	printf("\n%s STACK %c%s\n", line, ((stack->name) - 32), line);
+	printf("Value\t\tAddress\t\tPrevious\tNext\t\t\tPosition\tTarget\tCost\n");
 	while (length--)
 	{
-		printf("%i\t\t\t%p\t\t%p%s\t%p\n", current_node->value, &(current_node->value),
-			current_node->prev, print_tab_calc(current_node->prev),
-			current_node->next);
+		printf("%i\t\t%p\t%p\t%p\t\t%i\t\t%i\t%i\n", current_node->value,
+			&(current_node->value), current_node->prev, current_node->next,
+			current_node->position, current_node->target, current_node->cost);
 		current_node = current_node->next;
 	}
 	printf("\n");
+	fflush(stdout);
 }
 
 void	print_stack_data(t_ptr *stack)
 {
-	printf("Stack %c: Length: %i, First Address: %p\n",
-		(stack->name) - 32, stack->length, stack->next);
+	printf("Stack %c: Points to number: %i, Length: %i, First Address: %p\n",
+		(stack->name) - 32, stack->next->value, stack->length, stack->next);
+	fflush(stdout);
 }
 
 char	*print_tab_calc(t_list *prev)

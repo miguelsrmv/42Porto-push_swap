@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 09:29:28 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:42:28 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ t_list	*ft_lstnew(void *value)
 	t_list	*node;
 
 	node = (t_list *)malloc(sizeof(t_list));
-
 	if (!node)
 		return (NULL);
 	node->value = *(int *)value;
 	node->position = 0;
+	node->target = 0;
+	node->cost = 0;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

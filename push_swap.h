@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 12:48:42 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:37:58 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ typedef struct s_list
 {
 	int				value;
 	int				position;
+	int				target;
+	int				cost;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
 
-typedef struct t_ptr
+typedef struct s_ptr
 {
 	char			name;
 	int				length;
@@ -60,6 +62,8 @@ void	print_stack_data(t_ptr *stack);
 // Sort.c
 void	sort_list(t_list **starting_node, int length);
 int		is_a_sorted(t_list *current_node, t_list *buffer_node);
+void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
+void	find_correct_position(t_ptr **stack_a, t_ptr **stack_b);
 
 // Moves.c
 /// Moves_rotate.c

@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:59:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 12:52:36 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:10:27 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,19 @@
 
 void	push(t_ptr **stack_from, t_ptr **stack_to)
 {
-	t_ptr	*from_copy;
+	t_list	*temp_node;
 
-	from_copy = (*stack_from);									// Correct
-	(*stack_from)->next = (*stack_from)->next->next;			// Correct
-
-
-	from_copy->next->next->prev = from_copy->next->prev;
-	from_copy->next->prev->next = from_copy->next->next;
-
-	from_copy->next->next = (*stack_to)->next;
-	from_copy->next->prev = (*stack_to)->next->prev;
-
-	(*stack_to)->next->prev->next = from_copy->next;
-	(*stack_to)->next->prev = from_copy->next;
-	(*stack_to)->next = (from_copy)->next;
-
+	temp_node = (*stack_from)->next;
+	(*stack_from)->next = (*stack_from)->next->next;
+	temp_node->next->prev = temp_node->prev;
+	temp_node->prev->next = temp_node->next;
+	temp_node->next = (*stack_to)->next;
+	temp_node->prev = (*stack_to)->next->prev;
+	(*stack_to)->next->prev->next = temp_node;
+	(*stack_to)->next->prev = temp_node;
+	(*stack_to)->next = temp_node;
 	((*stack_from)->length)--;
 	((*stack_to)->length)++;
-
-	
-*/
 	print_instruction("p", (*stack_to)->name);
 
 }
