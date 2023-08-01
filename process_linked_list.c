@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 18:09:10 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:09:47 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,6 @@ void	create_stacks(t_list **starting_node, t_ptr **stack_a,
 	(*starting_node) = (*stack_a)->next;
 	write(1, "pb\npb\n", 6);
 }
+
+
+///////// REVER CRIAÇÃO DA STACK!!!!!! A STACK B ESTÁ INVERTIDA!!!!!
