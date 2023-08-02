@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 14:11:18 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:20:42 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_list
 {
 	int				value;
 	int				position;
+	int				rev_position;
 	int				target;
 	int				cost;
 	struct s_list	*next;
@@ -59,11 +60,11 @@ void	test_input(t_ptr **stack_a, t_ptr **stack_b);
 void	execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
 
 // Sort.c
-void	sort_list(t_list **starting_node, int length);
-int		is_a_sorted(t_list *current_node, t_list *buffer_node);
 void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
-void	find_correct_position(t_ptr **stack_a, t_ptr **stack_b);
+void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
+void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 int		check_sorted(t_ptr **stack_a, t_ptr **stack_b);
+void	sort(t_ptr **stack_a, t_ptr **stack_b);
 
 // Moves.c
 /// Moves_rotate.c

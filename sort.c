@@ -6,13 +6,14 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 17:39:47 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:38:02 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 {
@@ -25,7 +26,8 @@ void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 	while (length_a--)
 	{
 		temp_node = temp_node->prev;
-		temp_node->position = length_a + 1;
+		temp_node->position = length_a;
+		temp_node->rev_position = (*stack_a)->length - length_a;
 		temp_node->target = 0;
 		temp_node->cost = 0;
 	}
@@ -34,40 +36,54 @@ void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 	while (length_b--)
 	{
 		temp_node = temp_node->prev;
-		temp_node->position = length_b + 1;
+		temp_node->position = length_b;
+		temp_node->rev_position = (*stack_b)->length - length_b;
 		temp_node->target = 0;
 		temp_node->cost = 0;
 	}
 }
 
-void	find_correct_position(t_ptr **stack_a, t_ptr **stack_b)
+// Finds position of each value on stack B JUST below each value on stack A
+void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a)
 {
 	t_list	*a_node;
 	t_list	*b_node;
-	int		max_iteration;
+	int		length_b;
+	int		tmp_max;
 
 	a_node = (*stack_a)->next;
-	while (a_node->target == 0)
+	while (length_a--)
 	{
+		length_b = (*stack_b)->length;
 		b_node = (*stack_b)->next;
-		max_iteration = (*stack_b)->length;
-		while (a_node->value > b_node->value && max_iteration--)
-			b_node = b_node->next;
-		if (a_node->value < b_node->value)
+		tmp_max = INT_MIN;
+		while (length_b--)
 		{
-			a_node->target = b_node->position;
+			if (a_node->value > b_node->value && b_node->value >= tmp_max)
+			{
+				a_node->target = b_node->position;
+				tmp_max = b_node->value;
+			}
+			b_node = b_node->next;
 		}
-		else if (max_iteration == -1)
-			a_node->target = 1;
+		if (a_node->target == 0 && a_node->value < (*stack_b)->next->value)
+			a_node->target = (*stack_b)->length;
 		a_node = a_node->next;
 	}
 }
+// Checks if stacks are sorted
+// Returns 1 if Stack A is sorted and B is rev sorted
+// Returns 2 if Stack A is sorted
+// Returns 3 if Stack B is rev sorted
+// Returns 0 otherwise
 
 int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 {
 	t_list	*a_node;
 	t_list	*b_node;
 
+	print_list_order_organized(*stack_a);
+	print_list_order_organized(*stack_b);
 	if ((*stack_a)->next)
 	{
 		a_node = (*stack_a)->next;
@@ -90,7 +106,14 @@ int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 		return (0);
 }
 
-void	sort(t_ptr **stack_a, t_ptr **stack)
+void	sort(t_ptr **stack_a, t_ptr **stack_b)
 {
-	
+	while ((*stack_a)->length > 3)
+	{
+		reset_nodes(stack_a, stack_b);
+		find_position(stack_a, stack_b, (*stack_a)->length);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
+		(*stack_a)->length = 3;
+	}
 }

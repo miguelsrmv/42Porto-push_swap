@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 14:15:08 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:07:39 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,7 @@ int	main(int argc, char **argv)
 	// If tiny list:
 	// If long list:
 	create_stacks(&starting_node, &stack_a, &stack_b, argc - 1);
-	test_input(&stack_a, &stack_b);
-	/*
-	print_stack_data(stack_b);
-	reset_nodes(&stack_a, &stack_b);
-	find_correct_position(&stack_a, &stack_b);
-	check_sorted(&stack_a, &stack_b);
-	print_list_order_organized(stack_a);
-	print_list_order_organized(stack_b);
-	*/
+	sort(&stack_a, &stack_b);
 	// Sort it
 		// sort_list(&starting_node, argc - 1);
 	// Delete the entirety of the linked list
