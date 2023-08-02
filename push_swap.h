@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 16:20:42 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:45:46 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_list
 	int				rev_position;
 	int				target;
 	int				cost;
+	char			course;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
@@ -61,10 +62,14 @@ void	execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
 
 // Sort.c
 void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
-void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
-void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 int		check_sorted(t_ptr **stack_a, t_ptr **stack_b);
 void	sort(t_ptr **stack_a, t_ptr **stack_b);
+
+/// Calculate_move.c
+void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+int		min_cost(int a, int b, int c, int d);
+int		max_val(int a, int b);
+int		movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 
 // Moves.c
 /// Moves_rotate.c
@@ -77,7 +82,6 @@ void	reverse_rotate_both(t_ptr **stack_a, t_ptr **stack_b);
 void	swap_stack(t_ptr **stack);
 void	swap_both(t_ptr **stack_a, t_ptr **stack_b);
 void	swap(int *a, int *b);
-
 /// Moves_push.c
 void	push_to_0(t_ptr **stack_from, t_ptr **stack_to);
 void	push_to_1(t_ptr **stack_from, t_ptr **stack_to);

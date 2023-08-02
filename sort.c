@@ -6,14 +6,13 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 17:38:02 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:42:54 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <unistd.h>
-#include <limits.h>
 
 void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 {
@@ -43,34 +42,6 @@ void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 	}
 }
 
-// Finds position of each value on stack B JUST below each value on stack A
-void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a)
-{
-	t_list	*a_node;
-	t_list	*b_node;
-	int		length_b;
-	int		tmp_max;
-
-	a_node = (*stack_a)->next;
-	while (length_a--)
-	{
-		length_b = (*stack_b)->length;
-		b_node = (*stack_b)->next;
-		tmp_max = INT_MIN;
-		while (length_b--)
-		{
-			if (a_node->value > b_node->value && b_node->value >= tmp_max)
-			{
-				a_node->target = b_node->position;
-				tmp_max = b_node->value;
-			}
-			b_node = b_node->next;
-		}
-		if (a_node->target == 0 && a_node->value < (*stack_b)->next->value)
-			a_node->target = (*stack_b)->length;
-		a_node = a_node->next;
-	}
-}
 // Checks if stacks are sorted
 // Returns 1 if Stack A is sorted and B is rev sorted
 // Returns 2 if Stack A is sorted
@@ -112,6 +83,7 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 	{
 		reset_nodes(stack_a, stack_b);
 		find_position(stack_a, stack_b, (*stack_a)->length);
+		movement_cost(stack_a, stack_b, (*stack_a)->length);
 		print_list_order_organized(*stack_a);
 		print_list_order_organized(*stack_b);
 		(*stack_a)->length = 3;
