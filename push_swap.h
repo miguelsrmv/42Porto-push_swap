@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 22:39:01 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:11:18 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void	swap_both(t_ptr **stack_a, t_ptr **stack_b);
 void	swap(int *a, int *b);
 
 /// Moves_push.c
+void	push_to_0(t_ptr **stack_from, t_ptr **stack_to);
+void	push_to_1(t_ptr **stack_from, t_ptr **stack_to);
+void	push_from_1(t_ptr **stack_from, t_ptr **stack_to);
+void	push_to_x(t_ptr **stack_from, t_ptr **stack_to);
 void	push(t_ptr **stack_from, t_ptr **stack_to);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:59:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 17:58:11 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:47:01 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,40 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void	push(t_ptr **stack_from, t_ptr **stack_to)
+
+void	push_to_0(t_ptr **stack_from, t_ptr **stack_to)
+{
+	(*stack_to)->next = (*stack_from)->next;
+	(*stack_from)->next = (*stack_from)->next->next;
+	(*stack_from)->next->prev = ((*stack_to)->next)->prev;
+	(*stack_from)->next->prev->next = (*stack_to)->next;
+	(*stack_to)->next->next = NULL;
+	(*stack_to)->next->prev = NULL;
+}
+
+void	push_to_1(t_ptr **stack_from, t_ptr **stack_to)
+{
+	(*stack_to)->next->prev = (*stack_from)->next;
+	(*stack_to)->next->next = (*stack_from)->next;
+	(*stack_from)->next = (*stack_from)->next->next;
+	(*stack_from)->next->prev = (*stack_from)->next->prev->prev;
+	(*stack_from)->next->prev->next = (*stack_from)->next;
+	(*stack_to)->next->next->prev = (*stack_to)->next;
+	(*stack_to)->next->next->next = (*stack_to)->next;
+	(*stack_to)->next = (*stack_to)->next->next;
+}
+
+void	push_from_1(t_ptr **stack_from, t_ptr **stack_to)
+{
+	(*stack_from)->next->next = (*stack_to)->next;
+	(*stack_from)->next->prev = (*stack_to)->next->prev;
+	(*stack_to)->next->prev->next = (*stack_from)->next;
+	(*stack_to)->next->prev = (*stack_from)->next;
+	(*stack_to)->next = (*stack_to)->next->prev;
+	(*stack_from)->next = NULL;
+}
+
+void	push_to_x(t_ptr **stack_from, t_ptr **stack_to)
 {
 	t_list	*temp_node;
 
@@ -27,10 +60,21 @@ void	push(t_ptr **stack_from, t_ptr **stack_to)
 	(*stack_to)->next->prev->next = temp_node;
 	(*stack_to)->next->prev = temp_node;
 	(*stack_to)->next = temp_node;
+}
+
+void	push(t_ptr **stack_from, t_ptr **stack_to)
+{
+	if ((*stack_to)->length == 0)
+		push_to_0(stack_from, stack_to);
+	else if ((*stack_to)->length == 1)
+		push_to_1(stack_from, stack_to);
+	else if ((*stack_from)->length == 1)
+		push_from_1(stack_from, stack_to);
+	else
+		push_to_x(stack_from, stack_to);
 	((*stack_from)->length)--;
 	((*stack_to)->length)++;
 	print_instruction("p", (*stack_to)->name);
-
 }
 
 /*

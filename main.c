@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 22:40:29 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:15:08 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	main(int argc, char **argv)
 	// If tiny list:
 	// If long list:
 	create_stacks(&starting_node, &stack_a, &stack_b, argc - 1);
-	print_stack_data(stack_a);
-	print_list_order_organized(stack_a);
 	test_input(&stack_a, &stack_b);
 	/*
 	print_stack_data(stack_b);

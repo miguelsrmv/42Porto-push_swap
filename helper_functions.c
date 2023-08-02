@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 07:56:07 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:36:54 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	print_list_order_organized(t_ptr *stack)
 		current_node = current_node->next;
 	}
 	printf("%s%s\n", line, line);
+	print_stack_data(stack);
 	printf("\n");
 	fflush(stdout);
 }
@@ -52,11 +53,18 @@ void	test_input(t_ptr **stack_a, t_ptr **stack_b)
 
 	while (1)
 	{
-		printf("Move:");
+		if ((*stack_a)->length)
+			print_list_order_organized(*stack_a);
+		else
+			printf("\n\t\t\t\t\t\t   [[[ --- STACK A IS EMPTY --- ]]]\n\n\n");
+		if ((*stack_b)->length)
+			print_list_order_organized(*stack_b);
+		else
+			printf("\n\t\t\t\t\t\t   [[[ --- STACK B IS EMPTY --- ]]]\n\n\n");
+		printf("Move: ");
 		scanf("%s", input);
 		execute_input(input, stack_a, stack_b);
-		print_list_order_organized(*stack_a);
-		//print_list_order_organized(stack_b)
+
 	}
 }
 
