@@ -5,77 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:07:37 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 20:01:52 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/08/02 21:39:21 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/08/02 22:49:55 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-
-int	min_cost(int a, int b, int c, int d)
+void	rotate_pattern(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 {
-	int	min;
-
-	min = a;
-	if (min > b)
-		min = b;
-	if (min > c)
-		min = c;
-	if (min > d)
-		min = d;
-	return (min);
-}
-
-
-int	max_val(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	if (b < a)
-		return (b);
-}
-
-void	calculate_cost(t_list **stack_a, t_cost *cost)
-{
-	cost = (t_cost *)malloc(sizeof(t_cost));
-	if (!cost)
-	{
-		free(cost);
-		return ;
-	}
-	cost->a_up_b_up = 1 + max_val((*stack_a)->next->position,
-			(*stack_a)->next->target);
-	cost->a_down_b_down = 1 + max_val((*stack_a)->next->rev_position,
-			(*stack_a)->next->rev_target);
-	cost->a_up_b_down = 1 + (*stack_a)->next->position
-		+ (*stack_a)->next->rev_target;
-	cost->a_down_b_up = 1 + (*stack_a)->next->rev_position
-		+ (*stack_a)->next->target;
-	(*stack_a)->next->cost = min_cost(cost->a_up_b_up, cost->a_down_b_down,
-			cost->a_up_b_down, cost->a_down_b_up);
-	if ((*stack_a)->next->cost == cost->a_up_b_up)
-		(*stack_a)->next->course = 'a';
-	else if ((*stack_a)->next->cost == cost->a_down_b_down)
-		(*stack_a)->next->course = 'b';
-	else if ((*stack_a)->next->cost == cost->a_up_b_down)
-		(*stack_a)->next->course = 'c';
+	if ((*node)->next->pattern == 'a')
+		calc_rotate_a_up_b_up(node, stack_a, stack_b);
+	else if ((*node)->next->pattern == 'b')
+		calc_rotate_a_down_b_down(node, stack_a, stack_b);
+	else if ((*node)->next->pattern == 'c')
+		calc_rotate_a_up_b_down(node, stack_a, stack_b);
 	else
-		(*stack_a)->next->course = 'd';
-	free(cost);
+		calc_rotate_a_down_b_up(node, stack_a, stack_b);
 }
 
-int	movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a)
+void	calc_rotate_a_up_b_up(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 {
-	t_list	*a_node;
-	t_cost	*cost;
+	t_instruct	*rotate_instruct;
 
-	a_node = (*stack_a)->next;
-	while (length_a--)
+	rotate_instruct = create_instruction(rotate_instruct);
+	if ((*node)->next->position > (*node)->next->target)
 	{
-		calculate_cost(&a_node, cost);
-		a_node = a_node->next;
+		rotate_instruct->a = (*node)->next->position - (*node)->next->target;
+		rotate_instruct->both = (*node)->next->target;
 	}
+	else if ((*node)->next->position < (*node)->next->target)
+	{
+		rotate_instruct->b = (*node)->next->target - (*node)->next->position;
+		rotate_instruct->both = (*node)->next->position;
+	}
+	else
+		rotate_instruct->both = (*node)->next->target;
+	rotate(&rotate_instruct, stack_a, stack_b);
+	free(rotate_instruct);
+}
+
+void	calc_rotate_a_down_b_down(t_ptr **node, t_ptr **stack_a,
+		t_ptr **stack_b)
+{
+	t_instruct	*rotate_instruct;
+
+	rotate_instruct = create_instruction(rotate_instruct);
+	if ((*node)->next->rev_position > (*node)->next->rev_target)
+	{
+		rotate_instruct->a = -((*node)->next->rev_position
+				- (*node)->next->rev_target);
+		rotate_instruct->both = - (*node)->next->rev_target;
+	}
+	else if ((*node)->next->rev_position < (*node)->next->rev_target)
+	{
+		rotate_instruct->b = - ((*node)->next->rev_position
+				- (*node)->next->rev_target);
+		rotate_instruct->both = - (*node)->next->rev_position;
+	}
+	else
+		rotate_instruct->both = -(*node)->next->target;
+	rotate(&rotate_instruct, stack_a, stack_b);
+	free(rotate_instruct);
+}
+
+void	calc_rotate_a_up_b_down(t_ptr **node, t_ptr **stack_a,
+		t_ptr **stack_b)
+{
+	t_instruct	*rotate_instruct;
+
+	rotate_instruct = create_instruction(rotate_instruct);
+	rotate_instruct->a = (*node)->next->position;
+	rotate_instruct->b = - (*node)->next->rev_position;
+	rotate(&rotate_instruct, stack_a, stack_b);
+	free(rotate_instruct);
+}
+
+void	calc_rotate_a_down_b_up(t_ptr **node, t_ptr **stack_a,
+		t_ptr **stack_b)
+{
+	t_instruct	*rotate_instruct;
+
+	rotate_instruct = create_instruction(rotate_instruct);
+	rotate_instruct->a = - (*node)->next->rev_position;
+	rotate_instruct->b = (*node)->next->position;
+	rotate(&rotate_instruct, stack_a, stack_b);
+	free(rotate_instruct);
 }

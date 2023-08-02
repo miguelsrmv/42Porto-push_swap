@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 19:21:51 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:51:26 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
+#include <stdlib.h>
 
 // Finds position of each value on stack B JUST below each value on stack A
 void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a)
@@ -73,6 +74,17 @@ void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 	}
 }
 
+t_instruct	*create_instruction(t_instruct *instruction)
+{
+	instruction = (t_instruct *)malloc(sizeof(t_instruct));
+	if (!instruction)
+		return (NULL);
+	instruction->a = 0;
+	instruction->b = 0;
+	instruction->both = 0;
+	return (instruction);
+}
+
 // Checks if stacks are sorted
 // Returns 1 if Stack A is sorted and B is rev sorted
 // Returns 2 if Stack A is sorted
@@ -110,13 +122,17 @@ int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 
 void	sort(t_ptr **stack_a, t_ptr **stack_b)
 {
+	t_ptr	*node_to_push;
+
 	while ((*stack_a)->length > 3)
 	{
 		reset_nodes(stack_a, stack_b);
 		find_position(stack_a, stack_b, (*stack_a)->length);
 		movement_cost(stack_a, stack_b, (*stack_a)->length);
+		node_to_push = get_min_cost_node(stack_a);
+		rotate_pattern(&node_to_push, stack_a, stack_b);
+		push(stack_a, stack_b);
 		print_list_order_organized(*stack_a);
 		print_list_order_organized(*stack_b);
-		(*stack_a)->length = 3;
 	}
 }
