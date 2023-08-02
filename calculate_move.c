@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 21:39:21 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 22:49:55 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:50:24 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	rotate_pattern(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 {
+	if ((*node)->next->cost == 1)
+		return ;
 	if ((*node)->next->pattern == 'a')
 		calc_rotate_a_up_b_up(node, stack_a, stack_b);
 	else if ((*node)->next->pattern == 'b')

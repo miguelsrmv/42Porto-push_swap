@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:46:17 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 22:46:26 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:45:03 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,22 @@ void	reverse_rotate_both(t_ptr **stack_a, t_ptr **stack_b)
 void	rotate(t_instruct **rotate_instruct, t_ptr **stack_a,
 	t_ptr **stack_b)
 {
-	while ((*rotate_instruct)->a--)
+	while ((*rotate_instruct)->a-- > 0)
 		rotate_stack(stack_a);
-	while ((*rotate_instruct)->b--)
+	while ((*rotate_instruct)->b-- > 0)
 		rotate_stack(stack_b);
-	while ((*rotate_instruct)->both--)
+	while ((*rotate_instruct)->both-- > 0)
 		rotate_both(stack_a, stack_b);
-	while (-(*rotate_instruct)->a--)
+	(*rotate_instruct)->a++;
+	(*rotate_instruct)->b++;
+	(*rotate_instruct)->both++;
+	while ((*rotate_instruct)->a++ < 0)
 		reverse_rotate_stack(stack_a);
-	while (-(*rotate_instruct)->b--)
+	while ((*rotate_instruct)->b++ < 0)
 		reverse_rotate_stack(stack_b);
-	while (-(*rotate_instruct)->both--)
+	while ((*rotate_instruct)->both++ < 0)
 		reverse_rotate_both(stack_a, stack_b);
+	(*rotate_instruct)->a--;
+	(*rotate_instruct)->b--;
+	(*rotate_instruct)->both--;
 }

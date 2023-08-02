@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 23:07:23 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:58:44 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,19 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 		reset_nodes(stack_a, stack_b);
 		find_position(stack_a, stack_b, (*stack_a)->length);
 		movement_cost(stack_a, stack_b, (*stack_a)->length);
-		node_to_push = get_min_cost_node(stack_a);
-
-		rotate_pattern(&node_to_push, stack_a, stack_b);
-		push(stack_a, stack_b);
 		print_list_order_organized(*stack_a);
 		print_list_order_organized(*stack_b);
-		
+		node_to_push = get_min_cost_node(stack_a);
+		rotate_pattern(&node_to_push, stack_a, stack_b);
+		push(stack_a, stack_b);
 	}
+	print_list_order_organized(*stack_a);
+	print_list_order_organized(*stack_b);
 }
+
+//// A fazer:
+//// TINY_SORT: PARA 3 ELEMENTOS PELO MENOS, EVENTUALMENTE 4 OU 5
+//// ORDENAR STACK_A UMA VEZ SÓ COM 3 ELEMENTOS
+//// Push back to A, mas rodar A sempre que não for para a posição certa
+//// Uma vez passada toda a lista, RA até ficar tudo certo
+//// Free recursivo (depois de des-circlar lista) e de pointer de cada lista
