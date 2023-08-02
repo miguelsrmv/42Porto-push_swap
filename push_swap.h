@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 18:45:46 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:52:45 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_list
 	int				position;
 	int				rev_position;
 	int				target;
+	int				rev_target;
 	int				cost;
 	char			course;
 	struct s_list	*next;
@@ -31,6 +32,15 @@ typedef struct s_ptr
 	int				length;
 	t_list			*next;
 }	t_ptr;
+
+typedef struct s_cost
+{
+	int		a_up_b_up;
+	int		a_down_b_down;
+	int		a_up_b_down;
+	int		a_down_b_up;
+	char	course;
+}	t_cost;
 
 // Main.c
 int		main(int argc, char **argv);
@@ -64,12 +74,13 @@ void	execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
 void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
 int		check_sorted(t_ptr **stack_a, t_ptr **stack_b);
 void	sort(t_ptr **stack_a, t_ptr **stack_b);
+void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 
 /// Calculate_move.c
-void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 int		min_cost(int a, int b, int c, int d);
 int		max_val(int a, int b);
 int		movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+void	calculate_cost(t_list **stack_a, t_cost *cost);
 
 // Moves.c
 /// Moves_rotate.c

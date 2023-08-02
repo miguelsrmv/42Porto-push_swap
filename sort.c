@@ -6,13 +6,44 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 18:42:54 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:21:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
+
+// Finds position of each value on stack B JUST below each value on stack A
+void	find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a)
+{
+	t_list	*a_node;
+	t_list	*b_node;
+	int		length_b;
+	int		tmp_max;
+
+	a_node = (*stack_a)->next;
+	while (length_a--)
+	{
+		length_b = (*stack_b)->length;
+		b_node = (*stack_b)->next;
+		tmp_max = INT_MIN;
+		while (length_b--)
+		{
+			if (a_node->value > b_node->value && b_node->value >= tmp_max)
+			{
+				a_node->target = b_node->position;
+				a_node->rev_target = b_node->rev_position;
+				tmp_max = b_node->value;
+			}
+			b_node = b_node->next;
+		}
+		if (a_node->target == 0 && a_node->value < (*stack_b)->next->value)
+			a_node->target = (*stack_b)->length;
+		a_node = a_node->next;
+	}
+}
 
 void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
 {

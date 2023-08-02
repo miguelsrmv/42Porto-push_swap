@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 22:33:06 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:24:13 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_list	*ft_lstnew(void *value)
 	node->value = *(int *)value;
 	node->position = 0;
 	node->target = 0;
+	node->rev_position = 0;
+	node->rev_target = 0;
 	node->cost = 0;
 	node->next = NULL;
 	node->prev = NULL;

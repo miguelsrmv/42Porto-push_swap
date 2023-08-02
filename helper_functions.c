@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 16:28:33 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:05:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ void	print_list_order_organized(t_ptr *stack)
 			current_node->position, current_node->target, current_node->cost);
 		current_node = current_node->next;
 	} */
-	printf("Value\t\tPosition\tRevPosition\tTarget\t\tCost\n");
+	printf("Value\t\tPosition\tRevPosition\tTarget\t\tRevTarget\tCost\tCourse\n");
 	while (length--)
 	{
-		printf("%i\t\t%i\t\t%i\t\t%i\t\t%i\n", current_node->value,
+		printf("%i\t\t%i\t\t%i\t\t%i\t\t%i\t\t%i\t%c\n", current_node->value,
 			current_node->position, current_node->rev_position,
-			current_node->target, current_node->cost);
+			current_node->target, current_node->rev_target, current_node->cost,
+			current_node->course);
 		current_node = current_node->next;
 	}
 	printf("%s%s\n", line, line);
