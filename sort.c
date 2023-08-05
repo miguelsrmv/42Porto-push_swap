@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/05 19:58:30 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:43:10 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,62 +16,31 @@
 #include <limits.h>
 #include <stdlib.h>
 
-// Finds position of each value on stack B JUST below each value on stack A
-void	find_position_b(t_ptr **stack_a, t_ptr **stack_b, int length_a)
-{
-	t_list	*a_node;
-	t_list	*b_node;
-	int		length_b;
-	int		tmp_max;
 
-	a_node = (*stack_a)->next;
-	while (length_a--)
-	{
-		length_b = (*stack_b)->length;
-		b_node = (*stack_b)->next;
-		tmp_max = INT_MIN;
-		while (length_b--)
-		{
-			if (a_node->value > b_node->value && b_node->value >= tmp_max)
-			{
-				a_node->target = b_node->position;
-				a_node->rev_target = b_node->rev_position;
-				tmp_max = b_node->value;
-			}
-			b_node = b_node->next;
-		}
-		if (a_node->target == 0 && a_node->value < (*stack_b)->next->value)
-			a_node->target = (*stack_b)->length;
-		a_node = a_node->next;
-	}
+
+void	reset_node(t_list **node, t_ptr **stack, int length)
+{
+		(*node) = (*node)->prev;
+		(*node)->position = length;
+		(*node)->rev_position = (*stack)->length - length;
+		(*node)->target = 0;
+		(*node)->rev_target = 0;
+		(*node)->cost = 0;
+		(*node)->pattern = ' ';
 }
 
-void	reset_nodes(t_ptr **stack_a, t_ptr **stack_b)
+void	reset_stacks(t_ptr **stack_a, t_ptr **stack_b,
+	int length_a, int length_b)
 {
-	int		length_a;
-	int		length_b;
 	t_list	*temp_node;
 
-	length_a = (*stack_a)->length;
+
 	temp_node = (*stack_a)->next;
 	while (length_a--)
-	{
-		temp_node = temp_node->prev;
-		temp_node->position = length_a;
-		temp_node->rev_position = (*stack_a)->length - length_a;
-		temp_node->target = 0;
-		temp_node->cost = 0;
-	}
+		reset_node(&temp_node, stack_a, length_a);
 	temp_node = (*stack_b)->next;
-	length_b = (*stack_b)->length;
 	while (length_b--)
-	{
-		temp_node = temp_node->prev;
-		temp_node->position = length_b;
-		temp_node->rev_position = (*stack_b)->length - length_b;
-		temp_node->target = 0;
-		temp_node->cost = 0;
-	}
+		reset_node(&temp_node, stack_b, length_b);
 }
 
 t_instruct	*create_instruction(t_instruct *instruction)
@@ -126,7 +95,7 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 
 	while ((*stack_a)->length > 3)
 	{
-		reset_nodes(stack_a, stack_b);
+		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_b(stack_a, stack_b, (*stack_a)->length);
 		movement_cost(stack_a, stack_b, (*stack_a)->length);
 		print_list_order_organized(*stack_a);
@@ -136,9 +105,17 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 		push(stack_a, stack_b);
 	}
 	small_sort_3(stack_a);
-	reset_nodes(stack_a, stack_b);
-	print_list_order_organized(*stack_a);
-	print_list_order_organized(*stack_b);
+	while ((*stack_b)->length > 0)
+	{
+		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
+		find_position_a(stack_a, stack_b, (*stack_b)->length);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
+		break ;
+	}
+
 }
 
 //// A fazer:
