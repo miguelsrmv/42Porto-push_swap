@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 14:51:57 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:11:26 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ void	create_stacks(t_list **starting_node, t_ptr **stack_a,
 	last_a_node = ft_lstlast((*stack_a)->next);
 	(*stack_a)->next->prev = last_a_node;
 	(last_a_node)->next = (*stack_a)->next;
-	push(stack_a, stack_b);
-	push(stack_a, stack_b);
+	if ((*stack_a)->length > 3)
+	{
+		push(stack_a, stack_b);
+		push(stack_a, stack_b);
+	}
 }
 
 void	print_instruction(char *instruction, char stack)

@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 22:48:17 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/05 19:57:22 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,13 @@ void		execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
 void		reset_nodes(t_ptr **stack_a, t_ptr **stack_b);
 int			check_sorted(t_ptr **stack_a, t_ptr **stack_b);
 void		sort(t_ptr **stack_a, t_ptr **stack_b);
-void		find_position(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+void		find_position_b(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 t_instruct	*create_instruction(t_instruct *instruction);
+
+// Sort_2.c
+void		small_sort_3(t_ptr **stack);
+void		find_position_a(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+
 
 /// Calculate_cost.c
 int			min_cost(int a, int b, int c, int d);
@@ -101,6 +106,7 @@ void		calc_rotate_a_up_b_down(t_ptr **node, t_ptr **stack_a,
 				t_ptr **stack_b);
 void		calc_rotate_a_down_b_up(t_ptr **node, t_ptr **stack_a,
 				t_ptr **stack_b);
+
 // Moves.c
 /// Moves_rotate.c
 void		rotate_stack(t_ptr **stack);
