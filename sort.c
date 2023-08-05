@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/05 21:43:10 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:45:57 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 	while ((*stack_b)->length > 0)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
-		print_list_order_organized(*stack_a);
-		print_list_order_organized(*stack_b);
 		find_position_a(stack_a, stack_b, (*stack_b)->length);
 		print_list_order_organized(*stack_a);
 		print_list_order_organized(*stack_b);
