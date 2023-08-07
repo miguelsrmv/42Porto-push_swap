@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/05 21:50:18 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:40:58 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 	t_list	*a_node;
 	t_list	*b_node;
 
-	print_list_order_organized(*stack_a);
-	print_list_order_organized(*stack_b);
 	if ((*stack_a)->next)
 	{
 		a_node = (*stack_a)->next;
@@ -79,12 +77,13 @@ int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 		while ((b_node->value) > (b_node->next->value))
 		b_node = b_node->next;
 	}
-	if (a_node == (*stack_a)->next->prev && b_node == (*stack_b)->next->prev)
-		return (1);
-	else if (a_node == (*stack_a)->next->prev)
+	/*if (a_node == (*stack_a)->next->prev && b_node
+		&& b_node == (*stack_b)->next->prev)
+		return (1); */
+	if (a_node == (*stack_a)->next->prev)
 		return (2);
-	else if (b_node == (*stack_b)->next->prev)
-		return (3);
+	/*else if (b_node->next && b_node == (*stack_b)->next->prev)
+		return (3);*/
 	else
 		return (0);
 }
@@ -98,8 +97,6 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_b(stack_a, stack_b, (*stack_a)->length);
 		movement_cost(stack_a, stack_b, (*stack_a)->length);
-		print_list_order_organized(*stack_a);
-		print_list_order_organized(*stack_b);
 		node_to_push = get_min_cost_node(stack_a);
 		rotate_pattern(&node_to_push, stack_a, stack_b);
 		push(stack_a, stack_b);
@@ -109,11 +106,11 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_a(stack_a, stack_b, (*stack_b)->length);
-		print_list_order_organized(*stack_a);
-		print_list_order_organized(*stack_b);
-		break ;
+		rotate_back_pattern(stack_a, stack_b, (*stack_b)->length);
+		push(stack_b, stack_a);
 	}
-
+	while (check_sorted(stack_a, stack_b) != 2)
+		rotate_stack(stack_a);
 }
 
 //// A fazer:

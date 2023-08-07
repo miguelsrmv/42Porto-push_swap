@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:17:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/05 21:43:27 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:15:02 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,33 @@ void	correct_targets(t_list **node, int length)
 {
 	(*node)->target = length;
 	(*node)->rev_target = 0;
+}
+
+void	rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length)
+{
+	int		min_target;
+	int		max_rev_target;
+	t_list	*b_node;
+
+	min_target = (*stack_b)->next->target;
+	max_rev_target = (*stack_b)->next->rev_target;
+	b_node = (*stack_b)->next;
+	while (length--)
+	{
+		if (min_target > b_node->next->target)
+			min_target = b_node->next->target;
+		if (max_rev_target < b_node->next->rev_target)
+			max_rev_target = b_node->next->rev_target;
+		b_node = b_node->next;
+	}
+	if (min_target <= (*stack_a)->length - max_rev_target)
+	{
+		while (min_target--)
+			rotate_stack(stack_a);
+	}
+	else
+	{
+		while (max_rev_target--)
+			reverse_rotate_stack(stack_a);
+	}
 }
