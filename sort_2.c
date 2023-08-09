@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:17:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 18:12:15 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:55:50 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,29 +193,31 @@ void	rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b)
 	push(stack_b, stack_a);
 }
 
-void	final_rotate_back(t_ptr **stack_a)
+void	final_rotate_back(t_ptr **stack_a, t_list *temp_node, int length)
 {
 	t_ptr	*min_node;
 	int		min_move;
-	
-	min_node = (t_ptr *)malloc(sizeof(t_ptr));
+
+	min_node = (t_ptr *)malloc(sizeof(t_ptr *));
 	if (!min_node)
 		return ;
-	min_node->next = (*stack_a)->next;
-	while (min_node->next->value < min_node->next->next->value)
-		min_node->next = min_node->next->next;
-	min_node->next = min_node->next->next;
+	while (length--)
+	{
+		if (temp_node->value > temp_node->next->value)
+			min_node->next = temp_node;
+		temp_node = temp_node->next;
+	}
 	if (min_node->next->position <= min_node->next->rev_position)
 	{
-		min_move = min_node->next->position;
+		min_move = min_node->next->position + 1;
 		while ((min_move)--)
 			rotate_stack(stack_a);
 	}
 	else
 	{
-		min_move = min_node->next->rev_position;
+		min_move = min_node->next->rev_position - 1;
 		while ((min_move)--)
 			reverse_rotate_stack(stack_a);
 	}
-	free (min_node);
+	free(min_node);
 }

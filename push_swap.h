@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 16:33:44 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:48:45 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ void		min_targets(t_list **node, t_ptr **stack_b);
 void		correct_targets(t_list **node, int length);
 void		rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length);
 void		rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b);
-void		final_rotate_back(t_ptr **stack_a);
-
+void		final_rotate_back(t_ptr **stack_a, t_list *temp_node, int length);
 
 /// Calculate_cost.c
 int			min_cost(int a, int b, int c, int d);
