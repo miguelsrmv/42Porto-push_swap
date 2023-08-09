@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:17:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/07 19:15:02 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:36:56 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,19 @@ void	small_sort_3(t_ptr **stack)
 		reverse_rotate_stack(stack);
 		swap_stack(stack);
 	}
-	else if (a < b && b < c && a > c)
+	else if (a < b && b > c && a > c)
 		reverse_rotate_stack(stack);
-	else if (a > b && b < c && a < c)
-		swap_stack(stack);
+	else if (a > b && b > c && a > c)
+	{
+		rotate_stack(stack);
+		rotate_stack(stack);
+	}
 	else if (a > b && b < c && a > c)
 		rotate_stack(stack);
 	else
 	{
-		swap_stack(stack);
 		reverse_rotate_stack(stack);
+		swap_stack(stack);
 	}
 }
 
@@ -67,7 +70,7 @@ void	find_position_b(t_ptr **stack_a, t_ptr **stack_b, int length_a)
 			b_node = b_node->next;
 		}
 		if (a_node->target == 0 && a_node->value < (*stack_b)->next->value)
-			correct_targets(&a_node, (*stack_b)->length);
+			correct_targets(&a_node, (*stack_b)->length);  //// MIN TARGETS?!?!?!?!
 		a_node = a_node->next;
 	}
 }
@@ -97,9 +100,21 @@ void	find_position_a(t_ptr **stack_a, t_ptr **stack_b, int length_b)
 			a_node = a_node->next;
 		}
 		if (b_node->target == 0 && b_node->value > (*stack_a)->next->value)
-			correct_targets(&b_node, (*stack_a)->length);
+			max_targets(&b_node, stack_a);
 		b_node = b_node->next;
 	}
+}
+
+void	max_targets(t_list **node, t_ptr **stack_a)
+{
+	t_list	*a_node;
+
+	a_node = (*stack_a)->next;
+	while (a_node->next->value > a_node->value)
+		a_node = a_node->next;
+
+	(*node)->target = a_node->position + 1;
+	(*node)->rev_target = a_node->rev_position - 1;
 }
 
 void	correct_targets(t_list **node, int length)
@@ -121,7 +136,7 @@ void	rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length)
 	{
 		if (min_target > b_node->next->target)
 			min_target = b_node->next->target;
-		if (max_rev_target < b_node->next->rev_target)
+		if (max_rev_target > b_node->next->rev_target)
 			max_rev_target = b_node->next->rev_target;
 		b_node = b_node->next;
 	}
@@ -135,4 +150,23 @@ void	rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length)
 		while (max_rev_target--)
 			reverse_rotate_stack(stack_a);
 	}
+}
+
+void	rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b)
+{
+	int	min_move;
+
+	if ((*stack_b)->next->target <= (*stack_b)->next->rev_target)
+	{
+		min_move = ((*stack_b)->next->target);
+		while (min_move--)
+			rotate_stack(stack_a);
+	}
+	else
+	{
+		min_move = ((*stack_b)->next->rev_target);
+		while (min_move--)
+			reverse_rotate_stack(stack_a);
+	}
+	push(stack_b, stack_a);
 }

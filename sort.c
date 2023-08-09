@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/07 19:40:58 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:25:29 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,10 @@ void	reset_node(t_list **node, t_ptr **stack, int length)
 void	reset_stacks(t_ptr **stack_a, t_ptr **stack_b,
 	int length_a, int length_b)
 {
-	t_list	*temp_node;
-
-
-	temp_node = (*stack_a)->next;
 	while (length_a--)
-		reset_node(&temp_node, stack_a, length_a);
-	temp_node = (*stack_b)->next;
+		reset_node(&(*stack_a)->next, stack_a, length_a);
 	while (length_b--)
-		reset_node(&temp_node, stack_b, length_b);
+		reset_node(&(*stack_b)->next, stack_b, length_b);
 }
 
 t_instruct	*create_instruction(t_instruct *instruction)
@@ -88,29 +83,80 @@ int	check_sorted(t_ptr **stack_a, t_ptr **stack_b)
 		return (0);
 }
 
+void	correct_pointer(t_ptr **stack_a)
+{
+	int	i;
+
+	i = (*stack_a)->next->position;
+	while (i--)
+		(*stack_a)->next = (*stack_a)->next->prev;
+}
+
 void	sort(t_ptr **stack_a, t_ptr **stack_b)
 {
 	t_ptr	*node_to_push;
 
+	printf("SORTING BEGINS!\n");
+	fflush(stdout);
+	print_list_order_organized(*stack_a);
+	print_list_order_organized(*stack_b);
 	while ((*stack_a)->length > 3)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_b(stack_a, stack_b, (*stack_a)->length);
 		movement_cost(stack_a, stack_b, (*stack_a)->length);
 		node_to_push = get_min_cost_node(stack_a);
+		correct_pointer(stack_a);
+		printf("PUSHING NODE %i TO B!\n", node_to_push->next->value);
+		fflush(stdout);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
 		rotate_pattern(&node_to_push, stack_a, stack_b);
 		push(stack_a, stack_b);
+
+		printf("PUSHED!\n"); 
+		fflush(stdout);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
 	}
+	printf("SORTING A!\n");
+	fflush(stdout);
 	small_sort_3(stack_a);
 	while ((*stack_b)->length > 0)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_a(stack_a, stack_b, (*stack_b)->length);
+		printf("PUSHING TO A!\n");
+		fflush(stdout);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
+		/*
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
+		*/
+		/*
+		printf("\t\t\t *** BEFORE PUSH *** \n");
+		fflush(stdout);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
 		rotate_back_pattern(stack_a, stack_b, (*stack_b)->length);
 		push(stack_b, stack_a);
+		printf("\t\t\t *** AFTER PUSH *** \n");
+		fflush(stdout);
+		print_list_order_organized(*stack_a);
+		print_list_order_organized(*stack_b);
+		*/
+		rotate_back_and_push(stack_a, stack_b);
 	}
+	printf("ROTATING A!\n");
+	fflush(stdout);
+	print_list_order_organized(*stack_a);
+	print_list_order_organized(*stack_b);
 	while (check_sorted(stack_a, stack_b) != 2)
 		rotate_stack(stack_a);
+	printf("DONE!\n");
+	fflush(stdout);
+	print_list_order_organized(*stack_a);
 }
 
 //// A fazer:
