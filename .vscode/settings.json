@@ -2,6 +2,8 @@
 	"files.associations": {
 		"random": "c",
 		"limits": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"string_view": "c",
+		"regex": "c"
 	}
 }

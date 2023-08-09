@@ -6,14 +6,14 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:07:37 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 11:11:48 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:25:34 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
+#include <unistd.h>
 #include <stdlib.h>
-
 
 int	min_cost(int a, int b, int c, int d)
 {
@@ -98,15 +98,19 @@ t_ptr	*get_min_cost_node(t_ptr **stack_a)
 	return (cost_node);
 }
 */
-t_ptr	*get_min_cost_node(t_ptr **stack_a)
+
+t_ptr	*get_min_cost_node(t_ptr *stack_a)
 {
 	t_ptr	*cost_node;
 	t_list	*a_node;
 	int		length;
 
-	a_node = (*stack_a)->next;
-	cost_node = (*stack_a);
-	length = (*stack_a)->length;
+	a_node = stack_a->next;
+	cost_node = (t_ptr *)malloc(sizeof(t_ptr));
+	if (!cost_node)
+		return (NULL);
+	cost_node->next = stack_a->next;
+	length = stack_a->length;
 	while (length--)
 	{
 		if (cost_node->next->cost > a_node->cost)

@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 11:24:51 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:33:44 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,11 @@ void		small_sort_3(t_ptr **stack);
 void		find_position_b(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 void		find_position_a(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 void		max_targets(t_list **node, t_ptr **stack_a);
+void		min_targets(t_list **node, t_ptr **stack_b);
 void		correct_targets(t_list **node, int length);
 void		rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length);
 void		rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b);
+void		final_rotate_back(t_ptr **stack_a);
 
 
 /// Calculate_cost.c
@@ -101,7 +103,7 @@ int			min_cost(int a, int b, int c, int d);
 int			max_val(int a, int b);
 int			movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 void		calculate_cost(t_list **stack_a, t_cost *cost);
-t_ptr		*get_min_cost_node(t_ptr **stack_a);
+t_ptr		*get_min_cost_node(t_ptr *stack_a);
 
 /// Calculate_move.c
 void		rotate_pattern(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b);

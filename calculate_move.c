@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 21:39:21 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 09:02:04 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:13:45 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	calc_rotate_a_down_b_down(t_ptr **node, t_ptr **stack_a,
 	}
 	else if ((*node)->next->rev_position < (*node)->next->rev_target)
 	{
-		rotate_instruct->b = - ((*node)->next->rev_position
-				- (*node)->next->rev_target);
+		rotate_instruct->b = - ((*node)->next->rev_target
+				- (*node)->next->rev_position);
 		rotate_instruct->both = - (*node)->next->rev_position;
 	}
 	else
@@ -90,8 +90,8 @@ void	calc_rotate_a_down_b_up(t_ptr **node, t_ptr **stack_a,
 	t_instruct	*rotate_instruct;
 
 	rotate_instruct = create_instruction(rotate_instruct);
-	rotate_instruct->a = - (*node)->next->rev_target;
-	rotate_instruct->b = (*node)->next->position;
+	rotate_instruct->a = - (*node)->next->rev_position;
+	rotate_instruct->b = (*node)->next->target;
 	rotate(&rotate_instruct, stack_a, stack_b);
 	free(rotate_instruct);
 }
