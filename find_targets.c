@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:17:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 22:56:00 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:28:17 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	max_targets(t_list **node, t_ptr **stack)
 	tmp_node = (*stack)->next;
 	while (tmp_node->next->value > tmp_node->value)
 		tmp_node = tmp_node->next;
-
 	(*node)->target = tmp_node->position + 1;
 	(*node)->rev_target = tmp_node->rev_position - 1;
 }
@@ -94,7 +93,6 @@ void	min_targets(t_list **node, t_ptr **stack)
 	tmp_node = (*stack)->next;
 	while (tmp_node->next->value < tmp_node->value)
 		tmp_node = tmp_node->next;
-
 	(*node)->target = tmp_node->position + 1;
 	(*node)->rev_target = tmp_node->rev_position - 1;
 }

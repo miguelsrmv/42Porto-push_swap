@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 21:24:30 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:28:44 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ void	print_list_order_organized(t_ptr *stack)
 	line = "__________________________________________________________________";
 	printf("\n%s%s\n", line, line);
 	printf("\t\t\t\t\t\t\t\tSTACK %c\n", ((stack->name) - 32));
-	/* printf("Value\t\tAddress\t\tPrevious\tNext\t\t\tPosition\tTarget\t\tCost\n");
-		while (length--)
-	{
-		printf("%i\t\t%p\t%p\t%p\t\t%i\t\t%i\t\t%i\n", current_node->value,
-			&(current_node->value), current_node->prev, current_node->next,
-			current_node->position, current_node->target, current_node->cost);
-		current_node = current_node->next;
-	} */
 	printf("Value\t\tPosition\tRevPosition\tTarget\t\tRevTarget\tCost\tPattern\n");
 	while (length--)
 	{
@@ -73,13 +65,11 @@ void	test_input(t_ptr **stack_a, t_ptr **stack_b)
 		printf("Move: ");
 		scanf("%s", input);
 		execute_input(input, stack_a, stack_b);
-
 	}
 }
 
 void	execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b)
 {
-
 	if (strcmp(input, "pa") == 0)
 		push(stack_b, stack_a);
 	else if (strcmp(input, "pb") == 0)

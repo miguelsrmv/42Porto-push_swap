@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:23:30 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:29:35 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	small_sort_2(t_ptr **stack)
 
 	a = (*stack)->next->value;
 	b = (*stack)->next->next->value;
-
 	if (a > b)
 		swap_stack(stack);
 	else
