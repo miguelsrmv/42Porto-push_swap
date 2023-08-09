@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:46:17 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 18:01:48 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:02:32 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 void	rotate_stack(t_ptr **stack)
 {
 	(*stack)->next = (*stack)->next->next;
-	print_instruction("r", (*stack)->name);
+	write(1, "r", 1);
+	write(1, &(*stack)->name, 1);
+	write(1, "\n", 1);
 }
 
 // Rotates both stacks
@@ -28,13 +30,16 @@ void	rotate_both(t_ptr **stack_a, t_ptr **stack_b)
 	write(1, "rr\n", 3);
 }
 
-// Reverse rotates stack
+// Reverse rotates stack (note: instruction opposite of pdf)
 void	reverse_rotate_stack(t_ptr **stack)
 {
 	(*stack)->next = (*stack)->next->prev;
-	print_instruction("rr", (*stack)->name);
+	write(1, "rr", 1);
+	write(1, &(*stack)->name, 1);
+	write(1, "\n", 1);
 }
 
+// Rotates both (note: instruction opposite of pdf)
 void	reverse_rotate_both(t_ptr **stack_a, t_ptr **stack_b)
 {
 	(*stack_a)->next = (*stack_a)->next->prev;
@@ -42,6 +47,7 @@ void	reverse_rotate_both(t_ptr **stack_a, t_ptr **stack_b)
 	write(1, "rrr\n", 4);
 }
 
+// Executes rotate
 void	rotate(t_instruct **rotate_instruct, t_ptr **stack_a,
 	t_ptr **stack_b)
 {

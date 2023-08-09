@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:07:37 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 14:25:34 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:00:49 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+// Returns smallest value
 int	min_cost(int a, int b, int c, int d)
 {
 	int	min;
@@ -29,7 +30,7 @@ int	min_cost(int a, int b, int c, int d)
 	return (min);
 }
 
-
+// Returns biggest value
 int	max_val(int a, int b)
 {
 	if (a >= b)
@@ -38,6 +39,7 @@ int	max_val(int a, int b)
 		return (b);
 }
 
+// Calculates cost & updates node
 void	calculate_cost(t_list **stack_a, t_cost *cost)
 {
 	cost = (t_cost *)malloc(sizeof(t_cost));
@@ -67,6 +69,7 @@ void	calculate_cost(t_list **stack_a, t_cost *cost)
 	free(cost);
 }
 
+// Updates each node
 int	movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a)
 {
 	t_list	*a_node;
@@ -79,26 +82,8 @@ int	movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a)
 		a_node = a_node->next;
 	}
 }
-/*
-t_ptr	*get_min_cost_node(t_ptr **stack_a)
-{
-	t_ptr	*cost_node;
-	t_list	*a_node;
-	int		length;
 
-	a_node = (*stack_a)->next;
-	cost_node = (*stack_a);
-	length = (*stack_a)->length;
-	while (length--)
-	{
-		if (cost_node->next->cost > a_node->cost)
-			cost_node->next = a_node;
-		a_node = a_node->next;
-	}
-	return (cost_node);
-}
-*/
-
+// Gets node with smallest cost
 t_ptr	*get_min_cost_node(t_ptr *stack_a)
 {
 	t_ptr	*cost_node;

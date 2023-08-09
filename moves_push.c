@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:59:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 15:14:54 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:03:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-
+// Pushes to empty stack
 void	push_to_0(t_ptr **stack_from, t_ptr **stack_to)
 {
 	(*stack_to)->next = (*stack_from)->next;
@@ -25,6 +25,7 @@ void	push_to_0(t_ptr **stack_from, t_ptr **stack_to)
 	(*stack_to)->next->prev = NULL;
 }
 
+// Pushes to stack of 1
 void	push_to_1(t_ptr **stack_from, t_ptr **stack_to)
 {
 	(*stack_to)->next->prev = (*stack_from)->next;
@@ -37,6 +38,7 @@ void	push_to_1(t_ptr **stack_from, t_ptr **stack_to)
 	(*stack_to)->next = (*stack_to)->next->next;
 }
 
+// Pushes from stack of 1
 void	push_from_1(t_ptr **stack_from, t_ptr **stack_to)
 {
 	(*stack_from)->next->next = (*stack_to)->next;
@@ -47,6 +49,7 @@ void	push_from_1(t_ptr **stack_from, t_ptr **stack_to)
 	(*stack_from)->next = NULL;
 }
 
+// Pushes to/from non-empty stack
 void	push_to_x(t_ptr **stack_from, t_ptr **stack_to)
 {
 	t_list	*temp_node;
@@ -62,6 +65,7 @@ void	push_to_x(t_ptr **stack_from, t_ptr **stack_to)
 	(*stack_to)->next = temp_node;
 }
 
+// Generic push function
 void	push(t_ptr **stack_from, t_ptr **stack_to)
 {
 	if ((*stack_to)->length == 0)
@@ -74,35 +78,7 @@ void	push(t_ptr **stack_from, t_ptr **stack_to)
 		push_to_x(stack_from, stack_to);
 	((*stack_from)->length)--;
 	((*stack_to)->length)++;
-	print_instruction("p", (*stack_to)->name);
+	write(1, "p", 1);
+	write(1, &(*stack_to)->name, 1);
+	write(1, "\n", 1);
 }
-
-/*
-void	pb(t_list **current_node, t_list *buffer_node, int *rotate_back)
-{
-	t_list	*final_b_node;
-
-	final_b_node = ft_lstlast(buffer_node);
-	*current_node = (*current_node)->next;
-	final_b_node->next = (*current_node)->prev;
-	final_b_node->next->prev = final_b_node;
-	final_b_node->next->next = NULL;
-	(*current_node)->prev = NULL;
-	(*rotate_back)++;
-	write(1, "pb\n", 3);
-}
-
-void	pa(t_list **current_node, t_list *buffer_node, int *rotate_back)
-{
-	t_list	*final_b_node;
-
-	final_b_node = ft_lstlast(buffer_node);
-	(*current_node)->prev = final_b_node;
-	final_b_node->prev->next = NULL;
-	final_b_node->next = *current_node;
-	*current_node = (*current_node)->prev;
-	(*current_node)->prev = NULL;
-	(*rotate_back)--;
-	write(1, "pa\n", 3);
-}
-*/

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_value_checker.c                                :+:      :+:    :+:   */
+/*   validate_create_linked_list.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/01 09:39:32 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:29:19 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,31 @@ long	ft_atol(char *argument)
 	return (n * sign);
 }
 
-// Checks if numbers are ints or have non-digits
-int	check_arg_validity(char *argument, long value)
+// Checks if all arguments are digits with one + or - before
+int	check_args(char **argv)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (value > INT_MAX || value < INT_MIN)
-		return (0);
-	if (value < 0)
-		i++;
-	while (argument[i])
+	j = 0;
+	while (argv[i])
 	{
-		if (ft_isdigit(argument[i]) == 0)
-			return (0);
+		if ((argv[i][j] == '+' || argv[i][j] == '-') && argv[i][j + 1])
+			j++;
+		while (argv[i][j])
+		{
+			if (ft_isdigit(argv[i][j]) == 0)
+				return (0);
+			j++;
+		}
 		i++;
+		j = 0;
 	}
 	return (1);
 }
 
+// Checks for duplicate values on linked list
 int	check_duplicates(t_list *starting_node)
 {
 	t_list	*current_node;
@@ -85,9 +91,31 @@ int	check_duplicates(t_list *starting_node)
 	return (1);
 }
 
+// Creates linked list with numbers, clearing the list in case it's not an INT
+int	create_linked_list(char **argv, t_list **starting_node)
+{
+	long	value_from_argument;
+	t_list	*current_node;
 
-
-
-
-
-
+	value_from_argument = ft_atol(*argv);
+	*starting_node = ft_lstnew(&value_from_argument);
+	current_node = *starting_node;
+	argv++;
+	while (*argv)
+	{
+		value_from_argument = ft_atol(*argv);
+		if (value_from_argument > INT_MAX || value_from_argument < INT_MIN)
+		{
+			if (*starting_node)
+				ft_lstclear(*starting_node);
+			return (0);
+		}
+		else
+		{
+			ft_lstadd_back(starting_node, ft_lstnew(&value_from_argument));
+			current_node = current_node->next;
+		}
+		argv++;
+	}
+	return (1);
+}

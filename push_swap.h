@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 18:48:45 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:04:04 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,56 +52,51 @@ typedef struct s_instruct
 // Main.c
 int			main(int argc, char **argv);
 
-// Arg_value_checker.c
+// Validate_create_linked_list.c
 int			ft_isdigit(char c);
 long		ft_atol(char *argument);
-int			check_arg_validity(char *argument, long value);
+int			check_args(char **argv);
 int			check_duplicates(t_list *starting_node);
-
-// Process_linked_list.c
 int			create_linked_list(char **argv, t_list **starting_node);
+
+// Process_stacks.c
 void		create_stacks(t_list **starting_node, t_ptr **stack_a,
 				t_ptr **stack_b, int length);
-void		print_instruction(char *instruction, char stack);
+void		reset_stacks(t_ptr **stack_a, t_ptr **stack_b,
+				int length_a, int length_b);
+void		reset_node(t_list **node, t_ptr **stack, int length);
 
-// LInked_list_func.c
+// Linked_list_func.c
 t_list		*ft_lstnew(void *value);
 t_list		*ft_lstlast(t_list *lst);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstclear(t_list *node);
-
-// Helper_functions.c
-void		print_list_order_organized(t_ptr *starting_node);
-void		print_instruction(char *instruction, char stack);	
-void		print_stack_data(t_ptr *stack);
-void		test_input(t_ptr **stack_a, t_ptr **stack_b);
-void		execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
+void		free_allocs(t_ptr **stack_a, t_ptr **stack_b);
 
 // Sort.c
-void		reset_stacks(t_ptr **stack_a, t_ptr **stack_b,
-				int length_a, int length_b);
-void		reset_node(t_list **node, t_ptr **stack, int length);
-int			check_sorted(t_ptr **stack_a, t_ptr **stack_b);
-void		sort(t_ptr **stack_a, t_ptr **stack_b);
-void		correct_pointer(t_ptr **stack_a);
-t_instruct	*create_instruction(t_instruct *instruction);
-
-// Sort_2.c
+int			check_sorted(t_ptr **stack_a);
+void		sort(t_ptr **stack_a, t_ptr **stack_b, int argc);
+void		small_sort_2(t_ptr **stack);
 void		small_sort_3(t_ptr **stack);
-void		find_position_b(t_ptr **stack_a, t_ptr **stack_b, int length_a);
-void		find_position_a(t_ptr **stack_a, t_ptr **stack_b, int length_a);
-void		max_targets(t_list **node, t_ptr **stack_a);
-void		min_targets(t_list **node, t_ptr **stack_b);
-void		correct_targets(t_list **node, int length);
+void		big_sort(t_ptr **stack_a, t_ptr **stack_b);
+
+// Process_rotates.c
+t_instruct	*create_instruction(t_instruct *instruction);
 void		rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length);
 void		rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b);
 void		final_rotate_back(t_ptr **stack_a, t_list *temp_node, int length);
 
+// Find_targets.c
+void		find_position_b(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+void		find_position_a(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+void		max_targets(t_list **node, t_ptr **stack);
+void		min_targets(t_list **node, t_ptr **stack);
+
 /// Calculate_cost.c
 int			min_cost(int a, int b, int c, int d);
 int			max_val(int a, int b);
-int			movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 void		calculate_cost(t_list **stack_a, t_cost *cost);
+int			movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a);
 t_ptr		*get_min_cost_node(t_ptr *stack_a);
 
 /// Calculate_move.c
@@ -123,15 +118,24 @@ void		reverse_rotate_stack(t_ptr **stack);
 void		reverse_rotate_both(t_ptr **stack_a, t_ptr **stack_b);
 void		rotate(t_instruct **rotate_instruct, t_ptr **stack_a,
 				t_ptr **stack_b);
+
 /// Moves_swap.c
 void		swap_stack(t_ptr **stack);
 void		swap_both(t_ptr **stack_a, t_ptr **stack_b);
 void		swap(int *a, int *b);
+
 /// Moves_push.c
 void		push_to_0(t_ptr **stack_from, t_ptr **stack_to);
 void		push_to_1(t_ptr **stack_from, t_ptr **stack_to);
 void		push_from_1(t_ptr **stack_from, t_ptr **stack_to);
 void		push_to_x(t_ptr **stack_from, t_ptr **stack_to);
 void		push(t_ptr **stack_from, t_ptr **stack_to);
+
+// Helper_functions.c
+void		print_list_order_organized(t_ptr *starting_node);
+void		print_instruction(char *instruction, char stack);	
+void		print_stack_data(t_ptr *stack);
+void		test_input(t_ptr **stack_a, t_ptr **stack_b);
+void		execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
 
 #endif

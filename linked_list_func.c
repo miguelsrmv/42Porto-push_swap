@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:49:32 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/02 19:24:13 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:30:05 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ t_list	*ft_lstnew(void *value)
 		return (NULL);
 	node->value = *(int *)value;
 	node->position = 0;
-	node->target = 0;
 	node->rev_position = 0;
+	node->target = 0;
 	node->rev_target = 0;
 	node->cost = 0;
+	node->pattern = ' ';
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -68,4 +69,15 @@ void	ft_lstclear(t_list *node)
 	}
 	ft_lstclear(node->next);
 	free(node);
+}
+
+// Deallocate all memory
+void	free_allocs(t_ptr **stack_a, t_ptr **stack_b)
+{
+	if (*stack_b)
+		free(*stack_b);
+	(*stack_a)->next->prev->next = NULL;
+	(*stack_a)->next->prev = NULL;
+	ft_lstclear((*stack_a)->next);
+	free(*stack_a);
 }

@@ -6,13 +6,14 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 21:39:21 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 16:13:45 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:01:42 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
+// Establishes what pattern to use
 void	rotate_pattern(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 {
 	if ((*node)->next->cost == 1)
@@ -27,6 +28,7 @@ void	rotate_pattern(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 		calc_rotate_a_down_b_up(node, stack_a, stack_b);
 }
 
+// Calculates A and B moves
 void	calc_rotate_a_up_b_up(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 {
 	t_instruct	*rotate_instruct;
@@ -48,6 +50,7 @@ void	calc_rotate_a_up_b_up(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 	free(rotate_instruct);
 }
 
+// Calculates A and B moves
 void	calc_rotate_a_down_b_down(t_ptr **node, t_ptr **stack_a,
 		t_ptr **stack_b)
 {
@@ -72,6 +75,7 @@ void	calc_rotate_a_down_b_down(t_ptr **node, t_ptr **stack_a,
 	free(rotate_instruct);
 }
 
+// Calculates A and B moves
 void	calc_rotate_a_up_b_down(t_ptr **node, t_ptr **stack_a,
 		t_ptr **stack_b)
 {
@@ -84,6 +88,7 @@ void	calc_rotate_a_up_b_down(t_ptr **node, t_ptr **stack_a,
 	free(rotate_instruct);
 }
 
+// Calculates A and B moves
 void	calc_rotate_a_down_b_up(t_ptr **node, t_ptr **stack_a,
 		t_ptr **stack_b)
 {

@@ -6,12 +6,11 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/07 20:11:41 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:56:38 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -19,29 +18,25 @@ int	main(int argc, char **argv)
 	t_list			*starting_node;
 	t_ptr			*stack_a;
 	t_ptr			*stack_b;
-	// If there are only 1 elements, list is already sorted. 
-	// Alternative: create function to check validity?
+
 	if (argc < 3)
 		return (1);
-	// Checks if args are ints and if there are duplicates
-	if (create_linked_list(++argv, &starting_node) == 0
+	++argv;
+	if (check_args(argv) == 0 || create_linked_list(argv, &starting_node) == 0
 		|| check_duplicates(starting_node) == 0)
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	// Check if it's already sorted!!!
-	// If tiny list:
-	// If long list:
 	create_stacks(&starting_node, &stack_a, &stack_b, argc - 1);
-	sort(&stack_a, &stack_b);
-	// Sort it
-		// sort_list(&starting_node, argc - 1);
-	// Delete the entirety of the linked list
+	if (check_sorted(&stack_a) == 0)
+	{
+		free_allocs(&stack_a, &stack_b);
+		write(1, "OK\n", 3);
+		return (0);
+	}
+	sort(&stack_a, &stack_b, argc);
+	print_list_order_organized(stack_a);
+	free_allocs(&stack_a, &stack_b);
 	return (0);
 }
-
-
-// Tarefas
-// 1 Correct push_a e push_b em casos de 0, 1 ou 2 nodes
-// 2 Confirmar que swap / rotate / reverse rotate funciona em casos de 2 nodes
