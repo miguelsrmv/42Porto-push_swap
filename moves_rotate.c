@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:46:17 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:02:32 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:21:27 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	rotate_both(t_ptr **stack_a, t_ptr **stack_b)
 void	reverse_rotate_stack(t_ptr **stack)
 {
 	(*stack)->next = (*stack)->next->prev;
-	write(1, "rr", 1);
+	write(1, "rr", 2);
 	write(1, &(*stack)->name, 1);
 	write(1, "\n", 1);
 }
