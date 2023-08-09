@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 17:21:21 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:33:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,18 @@ void	sort(t_ptr **stack_a, t_ptr **stack_b)
 		find_position_b(stack_a, stack_b, (*stack_a)->length);
 		movement_cost(stack_a, stack_b, (*stack_a)->length);
 		node_to_push = get_min_cost_node(*stack_a);
+		print_list_order_organized((*stack_a));
+		print_list_order_organized((*stack_b));
+		printf("Pushing node %i\n", node_to_push->next->value);
+		fflush(stdout);
 		rotate_pattern(&node_to_push, stack_a, stack_b);
 		free(node_to_push);
 		push(stack_a, stack_b);
 	}
+	print_list_order_organized((*stack_a));
+	print_list_order_organized((*stack_b));
 	small_sort_3(stack_a);
+	print_list_order_organized((*stack_a));
 	while ((*stack_b)->length > 0)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);

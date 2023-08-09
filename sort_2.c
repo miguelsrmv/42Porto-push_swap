@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 19:17:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 17:22:18 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:12:15 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,8 @@ void	rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b)
 void	final_rotate_back(t_ptr **stack_a)
 {
 	t_ptr	*min_node;
-
+	int		min_move;
+	
 	min_node = (t_ptr *)malloc(sizeof(t_ptr));
 	if (!min_node)
 		return ;
@@ -206,13 +207,14 @@ void	final_rotate_back(t_ptr **stack_a)
 	min_node->next = min_node->next->next;
 	if (min_node->next->position <= min_node->next->rev_position)
 	{
-		while ((min_node->next->position)--)
+		min_move = min_node->next->position;
+		while ((min_move)--)
 			rotate_stack(stack_a);
-		rotate_stack(stack_a);
 	}
 	else
 	{
-		while ((min_node->next->rev_position)--)
+		min_move = min_node->next->rev_position;
+		while ((min_move)--)
 			reverse_rotate_stack(stack_a);
 	}
 	free (min_node);
