@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:23:43 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:52:47 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 	if (check_sorted(&stack_a) == 0)
 	{
 		free_allocs(&stack_a, &stack_b);
-		write(1, "OK\n", 3);
 		return (0);
 	}
 	sort(&stack_a, &stack_b, argc);
