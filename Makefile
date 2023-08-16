@@ -6,7 +6,7 @@
 #    By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 14:12:17 by mde-sa--          #+#    #+#              #
-#    Updated: 2023/08/16 12:13:00 by mde-sa--         ###   ########.fr        #
+#    Updated: 2023/08/16 15:19:36 by mde-sa--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=   push_swap
 
 CC      = 	cc
 
-CFLAGS  =   -Wall -Wextra -Werror -g
+CFLAGS  =   -Wall -Wextra -Werror
 
 SRCDIR	=	src
 
