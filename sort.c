@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 11:42:39 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:29:35 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:17:29 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,12 @@ void	small_sort_3(t_ptr **stack)
 void	big_sort(t_ptr **stack_a, t_ptr **stack_b)
 {
 	t_ptr	*node_to_push;
-	int		min_rotate_back;
 
 	while ((*stack_a)->length > 3)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_b(stack_a, stack_b, (*stack_a)->length);
-		movement_cost(stack_a, stack_b, (*stack_a)->length);
+		movement_cost(stack_a, (*stack_a)->length);
 		node_to_push = get_min_cost_node(*stack_a);
 		rotate_pattern(&node_to_push, stack_a, stack_b);
 		free(node_to_push);
@@ -109,7 +108,7 @@ void	big_sort(t_ptr **stack_a, t_ptr **stack_b)
 	{
 		reset_stacks(stack_a, stack_b, (*stack_a)->length, (*stack_b)->length);
 		find_position_a(stack_a, stack_b, (*stack_b)->length);
-		rotate_back_pattern(stack_a, stack_b, (*stack_b)->length);
+		rotate_back_pattern(stack_a, stack_b);
 		if ((*stack_b)->length != 0)
 			push(stack_b, stack_a);
 	}

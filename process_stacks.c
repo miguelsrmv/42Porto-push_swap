@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_linked_list.c                              :+:      :+:    :+:   */
+/*   process_stacks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 22:39:57 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:59:55 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	create_stacks(t_list **starting_node, t_ptr **stack_a,
 
 void	reset_node(t_list **node, t_ptr **stack, int length)
 {
-		(*node) = (*node)->prev;
-		(*node)->position = length;
-		(*node)->rev_position = (*stack)->length - length;
-		(*node)->target = 0;
-		(*node)->rev_target = 0;
-		(*node)->cost = 0;
-		(*node)->pattern = ' ';
+	(*node) = (*node)->prev;
+	(*node)->position = length;
+	(*node)->rev_position = (*stack)->length - length;
+	(*node)->target = 0;
+	(*node)->rev_target = 0;
+	(*node)->cost = 0;
+	(*node)->pattern = ' ';
 }
 
 void	reset_stacks(t_ptr **stack_a, t_ptr **stack_b,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_move.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 21:39:21 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:01:42 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:14:44 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	calc_rotate_a_up_b_up(t_ptr **node, t_ptr **stack_a, t_ptr **stack_b)
 {
 	t_instruct	*rotate_instruct;
 
+	rotate_instruct = NULL;
 	rotate_instruct = create_instruction(rotate_instruct);
 	if ((*node)->next->position > (*node)->next->target)
 	{
@@ -56,6 +57,7 @@ void	calc_rotate_a_down_b_down(t_ptr **node, t_ptr **stack_a,
 {
 	t_instruct	*rotate_instruct;
 
+	rotate_instruct = NULL;
 	rotate_instruct = create_instruction(rotate_instruct);
 	if ((*node)->next->rev_position > (*node)->next->rev_target)
 	{
@@ -81,6 +83,7 @@ void	calc_rotate_a_up_b_down(t_ptr **node, t_ptr **stack_a,
 {
 	t_instruct	*rotate_instruct;
 
+	rotate_instruct = NULL;
 	rotate_instruct = create_instruction(rotate_instruct);
 	rotate_instruct->a = (*node)->next->position;
 	rotate_instruct->b = - (*node)->next->rev_target;
@@ -94,6 +97,7 @@ void	calc_rotate_a_down_b_up(t_ptr **node, t_ptr **stack_a,
 {
 	t_instruct	*rotate_instruct;
 
+	rotate_instruct = NULL;
 	rotate_instruct = create_instruction(rotate_instruct);
 	rotate_instruct->a = - (*node)->next->rev_position;
 	rotate_instruct->b = (*node)->next->target;

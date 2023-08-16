@@ -6,31 +6,30 @@
 #    By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 14:12:17 by mde-sa--          #+#    #+#              #
-#    Updated: 2023/07/31 10:10:53 by mde-sa--         ###   ########.fr        #
+#    Updated: 2023/08/16 11:09:15 by mde-sa--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME	=   push_swap
 CC      = 	cc
-CFLAGS  =   -g
+CFLAGS  =   -Wall -Wextra -Werror
 RM      = 	rm -rf
+SRC		=	main.c calculate_cost.c calculate_move.c find_targets.c linked_list_func.c moves_push.c moves_rotate.c moves_swap.c process_rotates.c process_stacks.c sort.c validate_create_linked_list.c
 OBJS	= 	${SRC:.c=.o}
-SRC		=	${wildcard *.c}
 
-teste:
-	@make all -s
-	@make clean -s
+all: $(NAME)
 
-all: $(OBJS)
-	@$(CC) $(CFLAGS) $(SRC)
+$(NAME):
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 %.o: %.c
-	@$(CC) -c $<
+	$(CC) -c $<
 
 clean:
-	@$(RM) $(OBJS)
+	$(RM) $(OBJS)
 
 fclean: clean
-	@$(RM) a.out
+	$(RM) push_swap
 
 re: fclean
-	@$(MAKE) all
+	make all

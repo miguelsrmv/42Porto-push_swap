@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:30:14 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:15:39 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		big_sort(t_ptr **stack_a, t_ptr **stack_b);
 
 // Process_rotates.c
 t_instruct	*create_instruction(t_instruct *instruction);
-void		rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length);
+void		rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b);
 void		rotate_back_and_push(t_ptr **stack_a, t_ptr **stack_b);
 void		final_rotate_back(t_ptr **stack_a, t_list *temp_node, int length);
 
@@ -96,7 +96,7 @@ void		min_targets(t_list **node, t_ptr **stack);
 int			min_cost(int a, int b, int c, int d);
 int			max_val(int a, int b);
 void		calculate_cost(t_list **stack_a, t_cost *cost);
-int			movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a);
+void		movement_cost(t_ptr **stack, int length);
 t_ptr		*get_min_cost_node(t_ptr *stack_a);
 
 /// Calculate_move.c
@@ -130,12 +130,5 @@ void		push_to_1(t_ptr **stack_from, t_ptr **stack_to);
 void		push_from_1(t_ptr **stack_from, t_ptr **stack_to);
 void		push_to_x(t_ptr **stack_from, t_ptr **stack_to);
 void		push(t_ptr **stack_from, t_ptr **stack_to);
-
-// Helper_functions.c
-void		print_list_order_organized(t_ptr *starting_node);
-void		print_instruction(char *instruction, char stack);	
-void		print_stack_data(t_ptr *stack);
-void		test_input(t_ptr **stack_a, t_ptr **stack_b);
-void		execute_input(char *input, t_ptr **stack_a, t_ptr **stack_b);
 
 #endif

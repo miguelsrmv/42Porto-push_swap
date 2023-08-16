@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_cost.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:07:37 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:27:56 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:13:40 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	max_val(int a, int b)
 {
 	if (a >= b)
 		return (a);
-	if (b < a)
+	else
 		return (b);
 }
 
@@ -69,16 +69,17 @@ void	calculate_cost(t_list **stack_a, t_cost *cost)
 }
 
 // Updates each node
-int	movement_cost(t_ptr **stack_a, t_ptr **stack_b, int length_a)
+void	movement_cost(t_ptr **stack, int length)
 {
-	t_list	*a_node;
+	t_list	*node;
 	t_cost	*cost;
 
-	a_node = (*stack_a)->next;
-	while (length_a--)
+	cost = NULL;
+	node = (*stack)->next;
+	while (length--)
 	{
-		calculate_cost(&a_node, cost);
-		a_node = a_node->next;
+		calculate_cost(&node, cost);
+		node = node->next;
 	}
 }
 

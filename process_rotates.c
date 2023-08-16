@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_rotates.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 22:51:03 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 22:52:27 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:15:02 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_instruct	*create_instruction(t_instruct *instruction)
 	return (instruction);
 }
 
-void	rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b, int length)
+void	rotate_back_pattern(t_ptr **stack_a, t_ptr **stack_b)
 {
 	int		min_move;
 
