@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validate_create_linked_list.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:10:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/09 23:29:45 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:36:43 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include "push_swap.h"
-#include <limits.h>
 
 // Verifies if given char is a digit
 int	ft_isdigit(char c)
@@ -45,6 +44,16 @@ long	ft_atol(char *argument)
 	return (n * sign);
 }
 
+int	ft_strlen(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 // Checks if all arguments are digits with one + or - before
 int	check_args(char **argv)
 {
@@ -53,6 +62,8 @@ int	check_args(char **argv)
 
 	i = 0;
 	j = 0;
+	if (ft_strlen(*argv) == 0)
+		return (0);
 	while (argv[i])
 	{
 		if ((argv[i][j] == '+' || argv[i][j] == '-') && argv[i][j + 1])
@@ -73,49 +84,25 @@ int	check_args(char **argv)
 int	check_duplicates(t_list *starting_node)
 {
 	t_list	*current_node;
+	t_list	*copy_node;
 
-	while (starting_node->next)
+	copy_node = starting_node;
+	while (copy_node->next)
 	{
-		current_node = starting_node->next;
-		while (current_node->value)
+		current_node = copy_node->next;
+		while (current_node)
 		{
-			if (starting_node->value == current_node->value)
+			if (copy_node->value == current_node->value)
+			{
+				ft_lstclear(starting_node);
 				return (0);
+			}
 			if (current_node->next)
 				current_node = current_node->next;
 			else
 				break ;
 		}
-		starting_node = starting_node->next;
-	}
-	return (1);
-}
-
-// Creates linked list with numbers, clearing the list in case it's not an INT
-int	create_linked_list(char **argv, t_list **starting_node)
-{
-	long	value_from_argument;
-	t_list	*current_node;
-
-	value_from_argument = ft_atol(*argv);
-	*starting_node = ft_lstnew(&value_from_argument);
-	current_node = *starting_node;
-	argv++;
-	while (*argv)
-	{
-		value_from_argument = ft_atol(*argv);
-		if (value_from_argument > INT_MAX || value_from_argument < INT_MIN)
-		{
-			if (*starting_node)
-				ft_lstclear(*starting_node);
-			return (0);
-		}
-		else
-		{
-			ft_lstadd_back(starting_node, ft_lstnew(&value_from_argument));
-			current_node = current_node->next;
-		}
-		argv++;
+		copy_node = copy_node->next;
 	}
 	return (1);
 }

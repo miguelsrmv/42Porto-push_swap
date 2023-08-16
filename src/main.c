@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:13:55 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/10 21:52:47 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:42:04 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "push_swap.h"
+#include <limits.h>
 
 int	main(int argc, char **argv)
 {
@@ -19,13 +20,14 @@ int	main(int argc, char **argv)
 	t_ptr			*stack_a;
 	t_ptr			*stack_b;
 
-	if (argc < 3)
+	if (argc < 2)
 		return (1);
 	++argv;
-	if (check_args(argv) == 0 || create_linked_list(argv, &starting_node) == 0
+	if ((argc == 2 && (ft_atol(*argv) > INT_MAX || ft_atol(*argv) < INT_MIN))
+		|| check_args(argv) == 0 || create_lkd_list(argv, &starting_node) == 0
 		|| check_duplicates(starting_node) == 0)
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	create_stacks(&starting_node, &stack_a, &stack_b, argc - 1);

@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:40:09 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/16 11:15:39 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:43:20 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int			main(int argc, char **argv);
 // Validate_create_linked_list.c
 int			ft_isdigit(char c);
 long		ft_atol(char *argument);
+int			ft_strlen(char *str);
 int			check_args(char **argv);
 int			check_duplicates(t_list *starting_node);
-int			create_linked_list(char **argv, t_list **starting_node);
 
 // Process_stacks.c
 void		create_stacks(t_list **starting_node, t_ptr **stack_a,
@@ -65,13 +65,14 @@ void		create_stacks(t_list **starting_node, t_ptr **stack_a,
 void		reset_stacks(t_ptr **stack_a, t_ptr **stack_b,
 				int length_a, int length_b);
 void		reset_node(t_list **node, t_ptr **stack, int length);
+void		free_allocs(t_ptr **stack_a, t_ptr **stack_b);
 
 // Linked_list_func.c
 t_list		*ft_lstnew(void *value);
 t_list		*ft_lstlast(t_list *lst);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstclear(t_list *node);
-void		free_allocs(t_ptr **stack_a, t_ptr **stack_b);
+int			create_lkd_list(char **argv, t_list **starting_node);
 
 // Sort.c
 int			check_sorted(t_ptr **stack_a);

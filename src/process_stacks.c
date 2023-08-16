@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:09:26 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/08/16 10:59:55 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:42:58 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,15 @@ void	reset_stacks(t_ptr **stack_a, t_ptr **stack_b,
 		reset_node(&(*stack_a)->next, stack_a, length_a);
 	while (length_b--)
 		reset_node(&(*stack_b)->next, stack_b, length_b);
+}
+
+// Deallocate all memory
+void	free_allocs(t_ptr **stack_a, t_ptr **stack_b)
+{
+	if (*stack_b)
+		free(*stack_b);
+	(*stack_a)->next->prev->next = NULL;
+	(*stack_a)->next->prev = NULL;
+	ft_lstclear((*stack_a)->next);
+	free(*stack_a);
 }
